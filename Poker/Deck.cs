@@ -1,16 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Poker
 {
     public class Deck
     {
+        private int _numDecks = 1;
         public Deck(int numDecks = 1)
         {
-            InitializeDeck(numDecks);
+            _numDecks = numDecks;
+            InitializeDeck();
         }
 
         private Card[] _cards;
-        private void InitializeDeck(int numDecks)
+        private void InitializeDeck()
         {
             // 13 card values 4 suits
             // 13 x 4 array
@@ -18,7 +22,7 @@ namespace Poker
             const int suitColumn = 4;
 
             var cardList = new List<Card>();
-            for (var deck=0; deck < numDecks; deck++)
+            for (var deck=0; deck < _numDecks; deck++)
             {
                 for (var col = 1; col <= suitColumn; col++)
                 {
@@ -34,5 +38,34 @@ namespace Poker
         }
 
         public Card[] Cards => _cards;
+
+        protected void RemoveCard(Card card)
+        {
+            var cardIndex = Array.IndexOf(_cards, card);
+            
+            if (cardIndex < 0) return;
+
+            _cards = _cards
+                .Where((c, index) => index != cardIndex)
+                .ToArray();
+        }
+
+        public Card TakeCard()
+        {
+            var cardIndex = 0;
+            if (_cards.Length > 1)
+            {
+                cardIndex = RandomNumber.Between(0, _cards.Length - 1);
+            }
+
+            var result = _cards[cardIndex];
+            RemoveCard(result);
+            return result;
+        }
+
+        public void ResetDeck()
+        {
+            InitializeDeck();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Poker;
 using Shouldly;
+using System;
 using System.Linq;
 using Xunit;
 
@@ -58,6 +59,25 @@ namespace PokerTest
                         .ShouldBe(numDecks);
                 }
             }
+        }
+
+        [Fact]
+        public void RemoveCardTest()
+        {
+            var deck = new Deck();
+
+            var random = new Random();
+            while (deck.Cards.Length > 0)
+            {
+                var cardsCount = deck.Cards.Length;
+                var cardTaken = deck.TakeCard();
+
+                deck.Cards.Length.ShouldBe(cardsCount - 1);
+                Should.Throw<InvalidOperationException>(() => deck.Cards.Single(card => card == cardTaken));
+            }
+
+            deck.ResetDeck();
+            deck.Cards.Length.ShouldBe(52);
 
         }
     }

@@ -11,12 +11,31 @@ namespace Poker
         }
 
         public CardValue CardValue { get; }
-        public Suit Suit {get; set;}
+        public Suit Suit { get; set; }
 
         public int GetCardId()
         {
             return (int)CardValue + (int)Suit;
         }
+
+        public string ShortCode 
+        { 
+            get 
+            {
+                var cardValue = (int)CardValue;
+                string valueCode;
+                if (cardValue >= 2 && cardValue <= 9)
+                {
+                    valueCode = cardValue.ToString();
+                }
+                else 
+                {
+                    valueCode = CardValue.ToString()[0].ToString();
+                }
+
+                return valueCode + Suit.ToString()[0].ToString().ToLower();
+            }
+        }        
 
         public override string ToString()
         {
@@ -73,5 +92,4 @@ namespace Poker
         Clubs = 3,
         Diamonds = 4
     }
-
 }
