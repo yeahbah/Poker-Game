@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Poker
+﻿namespace Poker
 {
     public interface IDealer
     {
-        Card[] Deal();
+        Card[] DealHand();
+
         void Shuffle();
     }
 }

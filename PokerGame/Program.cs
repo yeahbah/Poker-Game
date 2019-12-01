@@ -6,7 +6,11 @@ namespace PokerGame
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var game = new NoLimitHoldem6Max25NL();
+            game.Start();
+
+            
+
         }
     }
 }

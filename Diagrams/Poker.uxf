@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>40</x>
+      <y>50</y>
+      <w>60</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Dealer</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>230</x>
+      <y>50</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Deal Cards</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>80</x>
+      <y>60</y>
+      <w>170</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;30.0;150.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>230</x>
+      <y>100</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Payout</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>90</x>
+      <y>90</y>
+      <w>160</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;140.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>30</x>
+      <y>220</y>
+      <w>160</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>IHoldemGame
+-
+Players[]
+void NewGame(sb, bb)
+void Start()
+decimal BuyInLimit
+short MaxPlayers
+AddPlayer(IPlayer)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>370</y>
+      <w>240</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>IPlayer
+-
+Name
+Games[]
+decimal Stack
+BuyInGame(IHoldemGame, buyIn)
+QuitGame(IHoldemGame)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>210</x>
+      <y>220</y>
+      <w>140</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>IPlayerAction
+-
+Bet()
+Raise()
+Fold()
+Check()</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

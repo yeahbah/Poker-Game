@@ -62,7 +62,7 @@ namespace PokerTest
         }
 
         [Fact]
-        public void RemoveCardTest()
+        public void TakeCardTest()
         {
             var deck = new Deck();
 
@@ -79,6 +79,23 @@ namespace PokerTest
             deck.ResetDeck();
             deck.Cards.Length.ShouldBe(52);
 
+        }
+
+        [Fact]
+        public void TakeCardsTest()
+        {
+            var deck = new Deck();
+            var numCards = 2;
+            var cards = deck.TakeCards(numCards);
+
+            cards.Length.ShouldBe(numCards);
+            deck.Cards.Length.ShouldBe(50);
+
+            deck.TakeCards(5);
+            deck.Cards.Length.ShouldBe(45);
+
+            deck.ResetDeck();
+            deck.Cards.Length.ShouldBe(52);
         }
     }
 }

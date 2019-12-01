@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Poker
 {
-    public class Deck
+    public class Deck : IDeck
     {
         private int _numDecks = 1;
         public Deck(int numDecks = 1)
@@ -22,7 +22,7 @@ namespace Poker
             const int suitColumn = 4;
 
             var cardList = new List<Card>();
-            for (var deck=0; deck < _numDecks; deck++)
+            for (var deck = 0; deck < _numDecks; deck++)
             {
                 for (var col = 1; col <= suitColumn; col++)
                 {
@@ -42,7 +42,7 @@ namespace Poker
         protected void RemoveCard(Card card)
         {
             var cardIndex = Array.IndexOf(_cards, card);
-            
+
             if (cardIndex < 0) return;
 
             _cards = _cards
@@ -61,6 +61,23 @@ namespace Poker
             var result = _cards[cardIndex];
             RemoveCard(result);
             return result;
+        }
+
+        public Card[] TakeCards(int numCards)
+        {
+            if (numCards > _cards.Length)
+            {
+                throw new InvalidOperationException("Number cards to take is more than the ");
+            }
+
+            var result = new List<Card>();
+            for (var i = 0; i < numCards; i++)
+            {
+                var card = TakeCard();
+                result.Add(card);
+            }
+
+            return result.ToArray();
         }
 
         public void ResetDeck()

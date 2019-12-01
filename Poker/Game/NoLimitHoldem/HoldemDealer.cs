@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Poker.Game.NoLimitHoldem
+﻿namespace Poker.Game.NoLimitHoldem
 {
     public class HoldemDealer : IDealer
     {
@@ -14,14 +8,14 @@ namespace Poker.Game.NoLimitHoldem
             _deck = new Deck();
         }
         
-        public Card[] Deal()
+        public Card[] DealHand()
         {
-            throw new NotImplementedException();
+            return _deck.TakeCards(2);
         }
 
         public void Shuffle()
         {
-            throw new NotImplementedException();
+            _deck.ResetDeck();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace PokerTest
     public class CardTest
     {
         [Fact]
-        public void EqualCards_Test()
+        public void EqualCards_SameSuitTest()
         {
             var card1 = new Card(CardValue.Ace, Suit.Clubs);
             var card2 = new Card(CardValue.Ace, Suit.Clubs);
@@ -17,11 +17,21 @@ namespace PokerTest
             (card1.GetHashCode() == card2.GetHashCode()).ShouldBeTrue();
         }
 
+        [Fact]        
+        public void EqualCards_NotSameSuitTest()
+        {
+            var card1 = new Card(CardValue.Ace, Suit.Clubs);
+            var card2 = new Card(CardValue.Ace, Suit.Diamonds);
+
+            (card1 != card2).ShouldBeTrue();
+            (card1.Equals(card2)).ShouldBeFalse();
+        }
+
         [Fact]
         public void NotEqualCards_Test()
         {
             var card1 = new Card(CardValue.Deuce, Suit.Diamonds);
-            var card2 = new Card(CardValue.Deuce, Suit.Hearts);
+            var card2 = new Card(CardValue.Trey, Suit.Hearts);
 
             (card1 == card2).ShouldBeFalse();
             (card1.Equals(card2)).ShouldBeFalse();
