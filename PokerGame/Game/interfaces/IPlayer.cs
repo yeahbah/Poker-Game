@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Poker.Game.interfaces
+namespace PokerGame.Game.interfaces
 {
     public interface IPlayer
     {

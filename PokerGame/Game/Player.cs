@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Poker.Game.interfaces;
+﻿using PokerGame.Game.interfaces;
+using System.Collections.Generic;
 
-namespace Poker.Game
+namespace PokerGame.Game
 {
     public class Player : IPlayer
     {

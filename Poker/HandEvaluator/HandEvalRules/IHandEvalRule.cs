@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Poker.Game
+namespace Poker.HandEvaluator.HandEvalRules
 {
-    public class HoldEm
+    public interface IHandEvalRule
     {
-        
+        HandType? Evaluate(Card[] cards);
     }
 }

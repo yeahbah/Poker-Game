@@ -2,7 +2,7 @@
 
 namespace Poker
 {
-    public struct Card
+    public struct Card : IComparable
     {
         public Card(CardValue cardValue, Suit suit)
         {
@@ -13,25 +13,24 @@ namespace Poker
         public CardValue CardValue { get; }
         public Suit Suit { get; set; }
 
-        public int GetCardId()
-        {
-            return (int)CardValue + (int)Suit;
-        }
-
+        public int DefaultCardWeight => (int)CardValue + (int)Suit;
+        
         public string ShortCode 
         { 
             get 
             {
-                var cardValue = (int)CardValue;
-                string valueCode;
-                if (cardValue >= 2 && cardValue <= 9)
+                var valueCode = CardValue switch
                 {
-                    valueCode = cardValue.ToString();
-                }
-                else 
-                {
-                    valueCode = CardValue.ToString()[0].ToString();
-                }
+                    CardValue.Deuce => "2",
+                    CardValue.Trey => "3",
+                    CardValue.Four => "4",
+                    CardValue.Five => "5",
+                    CardValue.Six => "6",
+                    CardValue.Seven => "7",
+                    CardValue.Eight => "8",
+                    CardValue.Nine => "9",
+                    _ => CardValue.ToString()[0].ToString()
+                };
 
                 return valueCode + Suit.ToString()[0].ToString().ToLower();
             }
@@ -66,30 +65,24 @@ namespace Poker
         {
             return new { CardValue, Suit }.GetHashCode();
         }
-    }
 
-    public enum CardValue
-    {
-        Ace = 1,
-        Deuce = 2,
-        Trey = 3,
-        Four = 4,
-        Five = 5,
-        Six = 6,
-        Seven = 7,
-        Eight = 8,
-        Nine = 9,
-        Ten = 10,
-        Jack = 11,
-        Queen = 12,
-        King = 13        
-    }
+        public int CompareTo(object obj)
+        {
+            if (obj == null) return 1;
 
-    public enum Suit
-    {
-        Spades = 1,
-        Hearts = 2,
-        Clubs = 3,
-        Diamonds = 4
+            var otherCardWeight = ((Card)obj).DefaultCardWeight;
+            var cardWeight = DefaultCardWeight;
+            if (cardWeight < otherCardWeight)
+            {
+                return -1;
+            }
+
+            if (cardWeight == otherCardWeight)
+            {
+                return 0;
+            }
+           
+            return 1;
+        }
     }
 }

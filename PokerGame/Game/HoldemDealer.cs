@@ -1,7 +1,8 @@
-﻿using Poker.Game.interfaces;
+﻿using Poker;
+using PokerGame.Game.interfaces;
 using System;
 
-namespace Poker.Game
+namespace PokerGame.Game
 {
     public class HoldemDealer : IHoldemDealer
     {

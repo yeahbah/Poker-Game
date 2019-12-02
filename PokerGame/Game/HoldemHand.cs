@@ -1,6 +1,7 @@
-﻿using Poker.Game.interfaces;
+﻿using Poker;
+using PokerGame.Game.interfaces;
 
-namespace Poker.Game
+namespace PokerGame.Game
 {
     public class HoldemHand : IHand
     {
@@ -8,7 +9,7 @@ namespace Poker.Game
 
         public override string ToString()
         {
-            return Cards[0].ShortCode + Cards[1].ShortCode;                
+            return Cards[0].ShortCode + Cards[1].ShortCode;
         }
     }
 }

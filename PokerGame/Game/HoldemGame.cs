@@ -1,8 +1,9 @@
-﻿using Poker.Game.interfaces;
+﻿using Poker;
+using PokerGame.Game.interfaces;
 using System;
 using System.Collections.Generic;
 
-namespace Poker.Game
+namespace PokerGame.Game
 {
     public abstract class HoldemGame : IHoldemGame
     {
@@ -30,7 +31,7 @@ namespace Poker.Game
 
         public void NewGame(int numPlayers, decimal smalBlindAmount, decimal bigBlindAmount)
         {
-            _dealerPosition = 0;                        
+            _dealerPosition = 0;
         }
 
         public abstract void Start();

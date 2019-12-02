@@ -1,5 +1,5 @@
 ﻿using Poker;
-using Poker.Game;
+using PokerGame.Game;
 using System;
 using System.Collections.Generic;
 using System.Linq;

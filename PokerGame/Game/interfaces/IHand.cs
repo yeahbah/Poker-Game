@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Poker;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Poker.Game.interfaces
+namespace PokerGame.Game.interfaces
 {
     public interface IHand
     {

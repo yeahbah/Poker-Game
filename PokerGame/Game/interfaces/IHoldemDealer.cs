@@ -1,4 +1,6 @@
-﻿namespace Poker.Game.interfaces
+﻿using Poker;
+
+namespace PokerGame.Game.interfaces
 {
     public interface IHoldemDealer : IDealer
     {

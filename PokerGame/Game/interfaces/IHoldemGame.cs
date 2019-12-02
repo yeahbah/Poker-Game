@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Poker;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Poker.Game.interfaces
+namespace PokerGame.Game.interfaces
 {
     public interface IHoldemGame
     {
@@ -21,7 +22,7 @@ namespace Poker.Game.interfaces
         // set dealer and blinds, deal cards
         void Start();
 
-        decimal MaxBuyInAmount { get;  }
+        decimal MaxBuyInAmount { get; }
 
         short MaxPlayerCount { get; }
 
