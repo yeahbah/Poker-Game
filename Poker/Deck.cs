@@ -16,9 +16,9 @@ namespace Poker
         private Card[] _cards;
         private void InitializeDeck()
         {
-            // 13 card values 4 suits
+            // 13 card (index 2), values 4 suits
             // 13 x 4 array
-            const int cardRow = 13;
+            const int cardRow = 14; // start index 2
             const int suitColumn = 4;
 
             var cardList = new List<Card>();
@@ -26,7 +26,7 @@ namespace Poker
             {
                 for (var col = 1; col <= suitColumn; col++)
                 {
-                    for (var row = 1; row <= cardRow; row++)
+                    for (var row = 2; row <= cardRow; row++)
                     {
                         var card = new Card((CardValue)row, (Suit)col);
                         cardList.Add(card);

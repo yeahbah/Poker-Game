@@ -41,26 +41,26 @@ namespace PokerTest
         }
 
         [Theory]
-        [InlineData(59, 4, "As")]
-        [InlineData(59, 3, "Ah")]
-        [InlineData(59, 2, "Ac")]
-        [InlineData(59, 1, "Ad")]
-        [InlineData(41, 4, "Ts")]
-        [InlineData(41, 3, "Th")]
-        [InlineData(41, 2, "Tc")]
-        [InlineData(41, 1, "Td")]
-        [InlineData(19, 4, "5s")]
-        [InlineData(19, 3, "5h")]
-        [InlineData(19, 2, "5c")]
-        [InlineData(19, 1, "5d")]
-        [InlineData(31, 4, "8s")]
-        [InlineData(31, 3, "8h")]
-        [InlineData(31, 2, "8c")]
-        [InlineData(31, 1, "8d")]
-        [InlineData(53, 4, "Ks")]
-        [InlineData(53, 3, "Kh")]
-        [InlineData(53, 2, "Kc")]
-        [InlineData(53, 1, "Kd")]
+        [InlineData(14, 4, "As")]
+        [InlineData(14, 3, "Ah")]
+        [InlineData(14, 2, "Ac")]
+        [InlineData(14, 1, "Ad")]
+        [InlineData(10, 4, "Ts")]
+        [InlineData(10, 3, "Th")]
+        [InlineData(10, 2, "Tc")]
+        [InlineData(10, 1, "Td")]
+        [InlineData(5, 4, "5s")]
+        [InlineData(5, 3, "5h")]
+        [InlineData(5, 2, "5c")]
+        [InlineData(5, 1, "5d")]
+        [InlineData(8, 4, "8s")]
+        [InlineData(8, 3, "8h")]
+        [InlineData(8, 2, "8c")]
+        [InlineData(8, 1, "8d")]
+        [InlineData(13, 4, "Ks")]
+        [InlineData(13, 3, "Kh")]
+        [InlineData(13, 2, "Kc")]
+        [InlineData(13, 1, "Kd")]
         public void ShortCodeTest(int cardValueIndex, int suitIndex, string expected)
         {
             var cardValue = (CardValue)cardValueIndex;
@@ -85,15 +85,15 @@ namespace PokerTest
             };
            
             Array.Sort(cards);
-            cards[0].ShouldBe( cards.Single(c => c.CardValue == CardValue.Deuce) );
-            cards[1].ShouldBe(cards.Single(c => c.CardValue == CardValue.Trey));
-            cards[2].ShouldBe(cards.Single(c => c.CardValue == CardValue.Six));
-            cards[3].ShouldBe(cards.Single(c => c.CardValue == CardValue.Ten));
+            cards[8].ShouldBe( cards.Single(c => c.CardValue == CardValue.Deuce) );
+            cards[7].ShouldBe(cards.Single(c => c.CardValue == CardValue.Trey));
+            cards[6].ShouldBe(cards.Single(c => c.CardValue == CardValue.Six));
+            cards[5].ShouldBe(cards.Single(c => c.CardValue == CardValue.Ten));
             cards[4].ShouldBe(cards.Single(c => c.CardValue == CardValue.Jack));
-            cards[5].ShouldBe(cards.Single(c => c.CardValue == CardValue.Queen));
-            cards[6].ShouldBe(cards.Single(c => c.CardValue == CardValue.King));
-            cards[7].ShouldBe(cards.Single(c => c.CardValue == CardValue.Ace && c.Suit == Suit.Diamonds));
-            cards[8].ShouldBe(cards.Single(c => c.CardValue == CardValue.Ace && c.Suit == Suit.Spades));
+            cards[3].ShouldBe(cards.Single(c => c.CardValue == CardValue.Queen));
+            cards[2].ShouldBe(cards.Single(c => c.CardValue == CardValue.King));
+            cards[1].ShouldBe(cards.Single(c => c.CardValue == CardValue.Ace && c.Suit == Suit.Diamonds));
+            cards[0].ShouldBe(cards.Single(c => c.CardValue == CardValue.Ace && c.Suit == Suit.Spades));
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 
 namespace Poker
 {
@@ -13,24 +15,35 @@ namespace Poker
         public CardValue CardValue { get; }
         public Suit Suit { get; set; }
 
-        public int DefaultCardWeight => (int)CardValue + (int)Suit;
+        public int DefaultCardWeight
+        {
+            get
+            {
+                var enumType = this.CardValue
+                    .GetType();
+                var name = Enum.GetName(enumType, CardValue);
+                var attr = enumType.GetField(name)
+                    .GetCustomAttribute<CardWeightAttribute>();
+
+                return attr.Weight + (int)Suit;               
+
+            }
+        }
         
         public string ShortCode 
         { 
             get 
-            {
-                var valueCode = CardValue switch
+            {                
+                var cardValue = (int)CardValue;
+                var valueCode = string.Empty;
+                if (cardValue >= 2 && cardValue <= 9) 
                 {
-                    CardValue.Deuce => "2",
-                    CardValue.Trey => "3",
-                    CardValue.Four => "4",
-                    CardValue.Five => "5",
-                    CardValue.Six => "6",
-                    CardValue.Seven => "7",
-                    CardValue.Eight => "8",
-                    CardValue.Nine => "9",
-                    _ => CardValue.ToString()[0].ToString()
-                };
+                    valueCode = cardValue.ToString();
+                }
+                else
+                {
+                    valueCode = CardValue.ToString()[0].ToString();
+                }
 
                 return valueCode + Suit.ToString()[0].ToString().ToLower();
             }
@@ -51,6 +64,16 @@ namespace Poker
             return !(left == right);
         }
 
+        public static bool operator >(Card left, Card right)
+        {
+            return left.DefaultCardWeight > right.DefaultCardWeight;
+        }
+
+        public static bool operator <(Card left, Card right)
+        {
+            return left.DefaultCardWeight < right.DefaultCardWeight;
+        }
+
         public override bool Equals(object obj)
         {
             if (!(obj is Card))
@@ -66,23 +89,23 @@ namespace Poker
             return new { CardValue, Suit }.GetHashCode();
         }
 
+        // descending order sort
         public int CompareTo(object obj)
         {
-            if (obj == null) return 1;
+            if (obj == null) return -1;
 
-            var otherCardWeight = ((Card)obj).DefaultCardWeight;
-            var cardWeight = DefaultCardWeight;
-            if (cardWeight < otherCardWeight)
+            var otherCard = ((Card)obj);            
+            if (this < otherCard)
             {
-                return -1;
+                return 1;
             }
 
-            if (cardWeight == otherCardWeight)
+            if (this == otherCard)
             {
                 return 0;
             }
            
-            return 1;
+            return -1;
         }
     }
 }

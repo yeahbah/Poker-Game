@@ -46,10 +46,10 @@ namespace PokerTest
             var deck = new Deck(numDecks);
 
             var suitColumn = 4;
-            var cardRow = 13;
+            var cardRow = 14;
             for (var col = 1; col <= suitColumn; col++)
             {
-                for (var row = 1; row <= cardRow; row++)
+                for (var row = 2; row <= cardRow; row++)
                 {
                     var card = new Card((CardValue)row, (Suit)col);
 

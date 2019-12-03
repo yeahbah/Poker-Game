@@ -1,29 +1,35 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Poker.HandEvaluator.HandEvalRules
 {
     public class PairEvalRule : IHandEvalRule
     {
-        public HandType? Evaluate(Card[] cards)
+        public HandEvaluationResult? Evaluate(Card[] cards)
         {
-            //Array.Sort(cards);
+            Array.Sort(cards);
             var found = new List<Card>();
             for (var i = 0; i < cards.Length; i++)
             {
-                for (var j = i + 1; j < cards.Length; j++)
+                var currentCard = cards[i];
+                var pair = cards.Where(c => c.CardValue == currentCard.CardValue 
+                                        && !found.Any(c => c.CardValue == currentCard.CardValue));
+                if (pair.Count() == 2)
                 {
-                    if (cards[i] == cards[j])
-                    {
-                        found.Add(cards[i]);
-                    }                        
-                }
+                    found.Add(currentCard);
+                }               
             }
 
-            // there can only be one pair
+            var handWeight = found.Sum(c => c.DefaultCardWeight);
             if (found.Count() == 1)
             {
-                return HandType.Pair;
+                return new HandEvaluationResult(handWeight, HandType.Pair);
+            }
+
+            if (found.Count() == 2)
+            {
+                return new HandEvaluationResult(handWeight, HandType.TwoPair);
             }
 
             return null;
