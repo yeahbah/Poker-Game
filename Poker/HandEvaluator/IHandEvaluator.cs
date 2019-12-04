@@ -1,22 +1,9 @@
 ﻿using Poker.HandEvaluator.HandEvalRules;
+using Poker.HandEvaluator.PokerHands;
 using System.Collections.Generic;
 
 namespace Poker.HandEvaluator
 {
-    public enum HandType 
-    {
-        HighCard,
-        Pair, 
-        TwoPair,
-        ThreeOfAKind,
-        Straight,
-        Flush,
-        Fullhouse,
-        FourOfAKind,
-        StraightFlush,
-        RoyalFlush
-    }
-
     public struct HandEvaluationResult
     {       
         public HandEvaluationResult(int handWeight, HandType handType)

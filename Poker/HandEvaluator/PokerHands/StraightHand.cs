@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Poker.HandEvaluator.PokerHands;
+using System;
 using System.Linq;
 
 namespace Poker.HandEvaluator.HandEvalRules

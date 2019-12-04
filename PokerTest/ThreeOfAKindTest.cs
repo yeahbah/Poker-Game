@@ -1,6 +1,7 @@
 ﻿using Poker;
 using Poker.HandEvaluator;
 using Poker.HandEvaluator.HandEvalRules;
+using Poker.HandEvaluator.PokerHands;
 using Shouldly;
 using Xunit;
 
