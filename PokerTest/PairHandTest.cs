@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-using Shouldly;
-using Poker;
-using Poker.HandEvaluator.HandEvalRules;
+﻿using Poker;
 using Poker.HandEvaluator;
+using Poker.HandEvaluator.HandEvalRules;
+using Shouldly;
+using Xunit;
 
 namespace PokerTest
 {
-    public class PairEvalRuleTest
+    public class PairHandTest
     {
         [Fact]
         public void PairTest()
@@ -25,7 +20,7 @@ namespace PokerTest
                 new Card(CardValue.Ten, Suit.Hearts)
             };
 
-            var result = new PairEvalRule().Evaluate(hand);
+            var result = new PairHand().Evaluate(hand);
             result.HasValue.ShouldBeTrue();
             result.Value.HandType.ShouldBe(HandType.Pair);
         }
@@ -42,7 +37,7 @@ namespace PokerTest
                 new Card(CardValue.King, Suit.Hearts)
             };
 
-            var result = new PairEvalRule().Evaluate(hand);
+            var result = new PairHand().Evaluate(hand);
             result.HasValue.ShouldBeTrue();
             result.Value.HandType.ShouldBe(HandType.TwoPair);
         }
@@ -59,8 +54,24 @@ namespace PokerTest
                 new Card(CardValue.King, Suit.Hearts)
             };
 
-            var result = new PairEvalRule().Evaluate(hand);
+            var result = new PairHand().Evaluate(hand);
             result.HasValue.ShouldBeFalse();            
+        }
+
+        [Fact]
+        public void NotATwoPairTest()
+        {
+           var hand = new[]
+           {
+                new Card(CardValue.Jack, Suit.Clubs),
+                new Card(CardValue.Jack, Suit.Hearts),
+                new Card(CardValue.Jack, Suit.Diamonds),
+                new Card(CardValue.Jack, Suit.Spades),
+                new Card(CardValue.King, Suit.Hearts)
+            };
+
+            var result = new PairHand().Evaluate(hand);
+            result.HasValue.ShouldBeFalse();
         }
     }
 }

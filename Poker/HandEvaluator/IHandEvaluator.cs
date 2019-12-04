@@ -32,7 +32,7 @@ namespace Poker.HandEvaluator
     
     public interface IHandEvaluator
     {
-        IEnumerable<IHandEvalRule> HandEvaluators { get; set; }
+        IEnumerable<IPokerHand> HandEvaluators { get; set; }
 
         // card point system, e.g. As = 100, Ah = 99, Ac = 98, Ad = 97        
         // in games where a royal vs royal is possible, which hand is best? 

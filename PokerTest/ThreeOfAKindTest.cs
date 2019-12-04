@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-using Shouldly;
-using Poker;
-using Poker.HandEvaluator.HandEvalRules;
+﻿using Poker;
 using Poker.HandEvaluator;
+using Poker.HandEvaluator.HandEvalRules;
+using Shouldly;
+using Xunit;
 
 namespace PokerTest
 {
@@ -25,7 +20,7 @@ namespace PokerTest
                 new Card(CardValue.Deuce, Suit.Hearts)
             };
 
-            var result = new ThreeOfAKindEvalRule().Evaluate(hand);
+            var result = new ThreeOfAKindHand().Evaluate(hand);
 
             result.HasValue.ShouldBeTrue();
             result.Value.HandType.ShouldBe(HandType.ThreeOfAKind);
@@ -43,7 +38,7 @@ namespace PokerTest
                 new Card(CardValue.Deuce, Suit.Hearts)
             };
 
-            var result = new ThreeOfAKindEvalRule().Evaluate(hand);
+            var result = new ThreeOfAKindHand().Evaluate(hand);
 
             result.ShouldBeNull();            
         }
@@ -60,7 +55,7 @@ namespace PokerTest
                 new Card(CardValue.Queen, Suit.Hearts)
             };
 
-            var result = new ThreeOfAKindEvalRule().Evaluate(hand);
+            var result = new ThreeOfAKindHand().Evaluate(hand);
 
             result.ShouldBeNull();            
         }
@@ -77,7 +72,7 @@ namespace PokerTest
                 new Card(CardValue.Deuce, Suit.Hearts)
             };
 
-            var result = new ThreeOfAKindEvalRule().Evaluate(hand);
+            var result = new ThreeOfAKindHand().Evaluate(hand);
 
             result.ShouldBeNull();
         }

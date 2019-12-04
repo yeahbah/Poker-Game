@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Poker.HandEvaluator.HandEvalRules
 {
-    public class FourOfAKindEvalRule : IHandEvalRule
+    public class FourOfAKindHand : IPokerHand
     {
         public HandEvaluationResult? Evaluate(Card[] cards)
         {

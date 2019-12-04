@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Poker.HandEvaluator.HandEvalRules
 {
-    public class StraightEvalRule : IHandEvalRule
+    public interface IPokerHand
     {
-        public HandEvaluationResult? Evaluate(Card[] cards)
-        {
-            throw new NotImplementedException();
-        }
+        HandEvaluationResult? Evaluate(Card[] cards);
     }
 }

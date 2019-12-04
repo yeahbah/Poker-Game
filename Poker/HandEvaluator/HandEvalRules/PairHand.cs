@@ -4,22 +4,21 @@ using System.Linq;
 
 namespace Poker.HandEvaluator.HandEvalRules
 {
-    public class PairEvalRule : IHandEvalRule
+    public class PairHand : IPokerHand
     {
         public HandEvaluationResult? Evaluate(Card[] cards)
         {
             Array.Sort(cards);
             var found = new List<Card>();
-            for (var i = 0; i < cards.Length; i++)
-            {
-                var currentCard = cards[i];
-                var pair = cards.Where(c => c.CardValue == currentCard.CardValue 
-                                        && !found.Any(c => c.CardValue == currentCard.CardValue));
+            Array.ForEach(cards, card =>            
+            {                
+                var pair = cards.Where(c => c.CardValue == card.CardValue
+                                        && !found.Any(c => c.CardValue == card.CardValue));
                 if (pair.Count() == 2)
                 {
-                    found.Add(currentCard);
-                }               
-            }
+                    found.Add(card);
+                }
+            });
 
             var handWeight = found.Sum(c => c.DefaultCardWeight);
             if (found.Count() == 1)

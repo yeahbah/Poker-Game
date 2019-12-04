@@ -1,28 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Poker.HandEvaluator.HandEvalRules
 {
-    public class ThreeOfAKindEvalRule : IHandEvalRule
+    public class ThreeOfAKindHand : IPokerHand
     {
         public HandEvaluationResult? Evaluate(Card[] cards)
         {
             Array.Sort(cards);
             var found = new List<Card>();
-            for (var i = 0; i < cards.Length; i++)
-            {
-                var currentCard = cards[i];
-                var trips = cards.Where(c => c.CardValue == currentCard.CardValue
-                                        && !found.Any(c => c.CardValue == currentCard.CardValue));
+            Array.ForEach(cards, card =>
+            {                
+                var trips = cards.Where(c => c.CardValue == card.CardValue
+                                        && !found.Any(c => c.CardValue == card.CardValue));
                 if (trips.Count() == 3)
-                {                    
-                    found.Add(currentCard);
-                    break;
+                {
+                    found.Add(card);                    
                 }
-            }            
+            });         
             
             if (found.Any())
             {

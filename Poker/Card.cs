@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Reflection;
 
 namespace Poker
@@ -25,7 +24,7 @@ namespace Poker
                 var attr = enumType.GetField(name)
                     .GetCustomAttribute<CardWeightAttribute>();
 
-                return attr.Weight + (int)Suit;               
+                return attr.Weight;
 
             }
         }
@@ -72,7 +71,7 @@ namespace Poker
         public static bool operator <(Card left, Card right)
         {
             return left.DefaultCardWeight < right.DefaultCardWeight;
-        }
+        }        
 
         public override bool Equals(object obj)
         {
