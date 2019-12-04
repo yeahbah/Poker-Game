@@ -75,5 +75,22 @@ namespace PokerTest
             var result = new StraightHand().Evaluate(hand);
             result.HasValue.ShouldBeFalse();         
         }
+
+        [Fact]
+        public void WheelTest()
+        {
+            var hand = new[]
+           {
+                new Card(CardValue.Deuce, Suit.Clubs),
+                new Card(CardValue.Trey, Suit.Clubs),
+                new Card(CardValue.Four, Suit.Clubs),
+                new Card(CardValue.Five, Suit.Clubs),
+                new Card(CardValue.Ace, Suit.Diamonds)
+            };
+
+            var result = new StraightHand().Evaluate(hand);
+            result.HasValue.ShouldBeTrue();
+            result.Value.HandType.ShouldBe(HandType.Straight);
+        }
     }
 }
