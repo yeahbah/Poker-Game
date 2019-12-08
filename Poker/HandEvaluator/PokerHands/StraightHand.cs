@@ -30,17 +30,22 @@ namespace Poker.HandEvaluator.HandEvalRules
 
             if (ok)
             {
-                var handWeight = cards.Sum(card => card.DefaultCardWeight);                
-                if (sameSuit == 5)
-                {
-                    if (cards[0].CardValue == CardValue.Ace && cards[4].CardValue == CardValue.Ten)
-                    {
-                        return new HandEvaluationResult(handWeight, HandType.RoyalFlush);
-                    }
-
-                    return new HandEvaluationResult(handWeight, HandType.StraightFlush);
+                var handWeight = cards.Sum(card => card.DefaultCardWeight);
+                var firstCardIsAnAce = cards[0].CardValue == CardValue.Ace;                
+                if (sameSuit == 5 && firstCardIsAnAce && cards[4].CardValue == CardValue.Ten)
+                {                    
+                    return new HandEvaluationResult(handWeight, HandType.RoyalFlush);
                 }
 
+                if (firstCardIsAnAce)
+                {
+                    handWeight -= 64; // ace weight = 71, on wheel ace, ace weight should be lower than deuce
+                }
+
+                if (sameSuit == 5)
+                {
+                    return new HandEvaluationResult(handWeight, HandType.StraightFlush);
+                }
                 return new HandEvaluationResult(handWeight, HandType.Straight);
             }
 

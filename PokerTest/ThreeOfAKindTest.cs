@@ -77,5 +77,32 @@ namespace PokerTest
 
             result.ShouldBeNull();
         }
+
+        [Fact]
+        public void SetOverSetTest()
+        {
+            var hand1 = new[]
+            {
+                new Card(CardValue.Deuce, Suit.Clubs),
+                new Card(CardValue.Deuce, Suit.Diamonds),
+                new Card(CardValue.Six, Suit.Diamonds),
+                new Card(CardValue.Four, Suit.Spades),
+                new Card(CardValue.Deuce, Suit.Hearts)
+            };
+            var result1 = new ThreeOfAKindHand().Evaluate(hand1);
+
+            var hand2 = new[]
+            {
+                new Card(CardValue.Ace, Suit.Clubs),
+                new Card(CardValue.Ace, Suit.Diamonds),
+                new Card(CardValue.Six, Suit.Diamonds),
+                new Card(CardValue.Four, Suit.Spades),
+                new Card(CardValue.Ace, Suit.Hearts)
+            };
+            var result2 = new ThreeOfAKindHand().Evaluate(hand2);
+
+            result1.ShouldNotBeNull();
+            result1.Value.HandWeight.ShouldBeLessThan(result2.Value.HandWeight);
+        }
     }
 }

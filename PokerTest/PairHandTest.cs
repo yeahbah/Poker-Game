@@ -74,5 +74,59 @@ namespace PokerTest
             var result = new PairHand().Evaluate(hand);
             result.HasValue.ShouldBeFalse();
         }
+
+        [Fact]
+        public void PairVsPairTest_BetterKicker()
+        {
+           var hand1 = new[]
+           {
+                new Card(CardValue.Ace, Suit.Clubs),
+                new Card(CardValue.Ace, Suit.Hearts),
+                new Card(CardValue.Queen, Suit.Diamonds),
+                new Card(CardValue.Deuce, Suit.Spades),
+                new Card(CardValue.Trey, Suit.Hearts)
+            };
+            var result1 = new PairHand().Evaluate(hand1);
+
+           var hand2 = new[]
+           {
+                new Card(CardValue.Ace, Suit.Diamonds),
+                new Card(CardValue.Ace, Suit.Hearts),
+                new Card(CardValue.Jack, Suit.Diamonds),
+                new Card(CardValue.Deuce, Suit.Spades),
+                new Card(CardValue.Trey, Suit.Hearts)
+            };
+            var result2 = new PairHand().Evaluate(hand2);
+
+            result1.HasValue.ShouldBeTrue();
+            result1.Value.HandWeight.ShouldBeGreaterThan(result2.Value.HandWeight);
+        }
+
+        [Fact]
+        public void PairVsPairTest_Chop()
+        {
+           var hand1 = new[]
+           {
+                new Card(CardValue.Ace, Suit.Clubs),
+                new Card(CardValue.Ace, Suit.Hearts),
+                new Card(CardValue.Nine, Suit.Diamonds),
+                new Card(CardValue.Deuce, Suit.Spades),
+                new Card(CardValue.Trey, Suit.Hearts)
+            };
+            var result1 = new PairHand().Evaluate(hand1);
+
+            var hand2 = new[]
+            {
+                new Card(CardValue.Ace, Suit.Diamonds),
+                new Card(CardValue.Ace, Suit.Hearts),
+                new Card(CardValue.Nine, Suit.Diamonds),
+                new Card(CardValue.Deuce, Suit.Spades),
+                new Card(CardValue.Trey, Suit.Hearts)
+            };
+            var result2 = new PairHand().Evaluate(hand2);
+
+            result1.HasValue.ShouldBeTrue();
+            result1.Value.HandWeight.ShouldBe(result2.Value.HandWeight);
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace Poker
         }
 
         private Card[] _cards;
-        private void InitializeDeck()
+        protected virtual void InitializeDeck()
         {
             // 13 card (index 2), values 4 suits
             // 13 x 4 array

@@ -21,7 +21,7 @@ namespace Poker.HandEvaluator.HandEvalRules
                 }
             });
 
-            var handWeight = found.Sum(c => c.DefaultCardWeight);
+            var handWeight = cards.Sum(c => c.DefaultCardWeight);
             if (found.Count() == 1)
             {
                 return new HandEvaluationResult(handWeight, HandType.Pair);
