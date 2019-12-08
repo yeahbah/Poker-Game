@@ -11,6 +11,43 @@ namespace Poker
             Suit = suit;
         }
 
+        public static Card InstanceFromShortCode(string shortCode)
+        {
+            if (string.IsNullOrEmpty(shortCode))
+            {
+                throw new InvalidOperationException();
+            }
+
+            var suit = shortCode[1].ToString().ToLower() switch 
+            {
+                "s" => Suit.Spades,
+                "c" => Suit.Clubs,
+                "h" => Suit.Hearts,
+                "d" => Suit.Diamonds,
+                _ => throw new Exception("Invalid suit.")
+            };
+
+            var c = shortCode[0].ToString().ToUpper();
+            if (int.TryParse(c, out var shortCodeInt))
+            {
+                return new Card((CardValue)shortCodeInt, suit);
+            }
+            else
+            {
+                var cardValue = c switch
+                {
+                    "T" => CardValue.Ten,
+                    "J" => CardValue.Jack,
+                    "Q" => CardValue.Queen,
+                    "K" => CardValue.King,
+                    "A" => CardValue.Ace,
+                    _ => throw new Exception($"{c} is not a valid card value code.")
+                };
+
+                return new Card(cardValue, suit);
+            }            
+        }
+
         public CardValue CardValue { get; }
         public Suit Suit { get; set; }
 

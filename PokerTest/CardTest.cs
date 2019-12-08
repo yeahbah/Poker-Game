@@ -95,5 +95,37 @@ namespace PokerTest
             cards[1].ShouldBe(cards.Single(c => c.CardValue == CardValue.Ace && c.Suit == Suit.Diamonds));
             cards[0].ShouldBe(cards.Single(c => c.CardValue == CardValue.Ace && c.Suit == Suit.Spades));
         }
+
+        [Fact]
+        public void CreateFromShortCodeExceptionTest()
+        {
+            Should.Throw<Exception>(() => Card.InstanceFromShortCode("Xs"));
+            Should.Throw<Exception>(() => Card.InstanceFromShortCode("Y"));
+            Should.Throw<Exception>(() => Card.InstanceFromShortCode("10"));
+            Should.Throw<Exception>(() => Card.InstanceFromShortCode("11c"));
+            Should.Throw<Exception>(() => Card.InstanceFromShortCode(""));
+
+        }
+
+        [Theory]
+        [InlineData("Ts", CardValue.Ten, Suit.Spades)]
+        [InlineData("Jc", CardValue.Jack, Suit.Clubs)]
+        [InlineData("Qd", CardValue.Queen, Suit.Diamonds)]
+        [InlineData("Kh", CardValue.King, Suit.Hearts)]
+        [InlineData("As", CardValue.Ace, Suit.Spades)]
+        [InlineData("2s", CardValue.Deuce, Suit.Spades)]
+        [InlineData("3c", CardValue.Trey, Suit.Clubs)]
+        [InlineData("4d", CardValue.Four, Suit.Diamonds)]
+        [InlineData("5h", CardValue.Five, Suit.Hearts)]
+        [InlineData("6s", CardValue.Six, Suit.Spades)]
+        [InlineData("7c", CardValue.Seven, Suit.Clubs)]
+        [InlineData("8h", CardValue.Eight, Suit.Hearts)]
+        [InlineData("9d", CardValue.Nine, Suit.Diamonds)]
+        public void CreateFromShortCodeTest(string shortCode, CardValue expectedCardValue, Suit expectedSuit)
+        {
+            var card = Card.InstanceFromShortCode(shortCode);
+            card.CardValue.ShouldBe(expectedCardValue);
+            card.Suit.ShouldBe(expectedSuit);
+        }
     }
 }
