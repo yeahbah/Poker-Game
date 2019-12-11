@@ -28,7 +28,7 @@ namespace PokerTest
         [Fact]
         public void StraightFlushNotARegularFlush()
         {
-            var hand = new[]
+           var hand = new[]
            {
                 new Card(CardValue.Deuce, Suit.Clubs),
                 new Card(CardValue.Ace, Suit.Clubs),
