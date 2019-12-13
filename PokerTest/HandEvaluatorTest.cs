@@ -19,7 +19,7 @@ namespace PokerTest
                 new Card(CardValue.Four, Suit.Clubs),
                 new Card(CardValue.Five, Suit.Clubs)
             };
-            var handEvaluator = new HandEvaluator();
+            var handEvaluator = new DefaultHandEvaluator();
             var result = handEvaluator.Evaluate(hand);
             result.HandType.ShouldBe(HandType.Flush);
         }
@@ -35,7 +35,7 @@ namespace PokerTest
                 new Card(CardValue.King, Suit.Spades),
                 new Card(CardValue.Ten, Suit.Hearts)
             };
-            var handEvaluator = new HandEvaluator();
+            var handEvaluator = new DefaultHandEvaluator();
             var result = handEvaluator.Evaluate(hand);            
             result.HandType.ShouldBe(HandType.Pair);
         }
@@ -52,7 +52,7 @@ namespace PokerTest
                 new Card(CardValue.King, Suit.Hearts)
             };
 
-            var handEvaluator = new HandEvaluator();
+            var handEvaluator = new DefaultHandEvaluator();
             var result = handEvaluator.Evaluate(hand);            
             result.HandType.ShouldBe(HandType.TwoPair);
         }
@@ -68,7 +68,7 @@ namespace PokerTest
                 new Card(CardValue.Four, Suit.Spades),
                 new Card(CardValue.Deuce, Suit.Hearts)
             };
-            var result = new HandEvaluator().Evaluate(hand);            
+            var result = new DefaultHandEvaluator().Evaluate(hand);            
             result.HandType.ShouldBe(HandType.ThreeOfAKind);
         }
 
@@ -84,7 +84,7 @@ namespace PokerTest
                 new Card(CardValue.Six, Suit.Hearts)
             };
 
-            var result = new HandEvaluator().Evaluate(hand);
+            var result = new DefaultHandEvaluator().Evaluate(hand);
             result.HandType.ShouldBe(HandType.Straight);
         }
 
@@ -100,7 +100,7 @@ namespace PokerTest
                 new Card(CardValue.Six, Suit.Clubs)
             };
 
-            var result = new HandEvaluator().Evaluate(hand);
+            var result = new DefaultHandEvaluator().Evaluate(hand);
             result.HandType.ShouldBe(HandType.StraightFlush);
         }
 
@@ -115,7 +115,7 @@ namespace PokerTest
                 new Card(CardValue.Four, Suit.Spades),
                 new Card(CardValue.Eight, Suit.Hearts)
             };
-            var result = new HandEvaluator().Evaluate(hand);
+            var result = new DefaultHandEvaluator().Evaluate(hand);
             result.HandType.ShouldBe(HandType.HighCard);
         }
 
@@ -131,7 +131,7 @@ namespace PokerTest
                 new Card(CardValue.King, Suit.Clubs)
             };
 
-            var result = new HandEvaluator().Evaluate(hand);
+            var result = new DefaultHandEvaluator().Evaluate(hand);
             result.HandType.ShouldBe(HandType.RoyalFlush);
         }
     }

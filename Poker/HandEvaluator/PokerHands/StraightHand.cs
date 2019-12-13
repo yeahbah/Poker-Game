@@ -34,7 +34,7 @@ namespace Poker.HandEvaluator.HandEvalRules
                 var firstCardIsAnAce = cards[0].CardValue == CardValue.Ace;                
                 if (sameSuit == 5 && firstCardIsAnAce && cards[4].CardValue == CardValue.Ten)
                 {                    
-                    return new HandEvaluationResult(handWeight, HandType.RoyalFlush);
+                    return new HandEvaluationResult(handWeight, HandType.RoyalFlush, cards);
                 }
 
                 if (firstCardIsAnAce)
@@ -44,9 +44,9 @@ namespace Poker.HandEvaluator.HandEvalRules
 
                 if (sameSuit == 5)
                 {
-                    return new HandEvaluationResult(handWeight, HandType.StraightFlush);
+                    return new HandEvaluationResult(handWeight, HandType.StraightFlush, cards);
                 }
-                return new HandEvaluationResult(handWeight, HandType.Straight);
+                return new HandEvaluationResult(handWeight, HandType.Straight, cards);
             }
 
             return null;

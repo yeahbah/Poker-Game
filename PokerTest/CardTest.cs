@@ -96,6 +96,25 @@ namespace PokerTest
             cards[0].ShouldBe(cards.Single(c => c.CardValue == CardValue.Ace && c.Suit == Suit.Spades));
         }
 
+        //[Fact]
+        //public void SortingTest2()
+        //{
+        //    var cards = new[] {
+        //        new Card(CardValue.Jack, Suit.Clubs),
+        //        new Card(CardValue.Jack, Suit.Diamonds),
+        //        new Card(CardValue.Ace, Suit.Diamonds),
+        //        new Card(CardValue.Six, Suit.Diamonds),
+        //        new Card(CardValue.Queen, Suit.Clubs)
+        //    };
+
+        //    Array.Sort(cards);
+        //    cards[4].ShouldBe(cards.Single(c => c.CardValue == CardValue.Six));
+        //    cards[3].ShouldBe(cards.Single(c => c.CardValue == CardValue.Queen));
+        //    cards[2].ShouldBe(cards.Single(c => c.CardValue == CardValue.Ace));
+        //    cards[1].ShouldBe(cards.Single(c => c.CardValue == CardValue.Jack));
+        //    cards[0].ShouldBe(cards.Single(c => c.CardValue == CardValue.Jack));
+        //}
+
         [Fact]
         public void CreateFromShortCodeExceptionTest()
         {

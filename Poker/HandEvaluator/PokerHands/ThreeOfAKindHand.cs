@@ -28,8 +28,9 @@ namespace Poker.HandEvaluator.HandEvalRules
                     .ToArray();
                 if (notAFullHouse[0].CardValue != notAFullHouse[1].CardValue)
                 {
+                    found.AddRange(cards.Where(c => !found.Contains(c)));
                     var handWeight = found.Sum(c => c.DefaultCardWeight);
-                    return new HandEvaluationResult(handWeight, HandType.ThreeOfAKind);
+                    return new HandEvaluationResult(handWeight, HandType.ThreeOfAKind, found.ToArray());
                 }
             }
 

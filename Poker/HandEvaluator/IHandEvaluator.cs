@@ -1,20 +1,24 @@
 ﻿using Poker.HandEvaluator.HandEvalRules;
 using Poker.HandEvaluator.PokerHands;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Poker.HandEvaluator
 {
     public struct HandEvaluationResult
     {       
-        public HandEvaluationResult(int handWeight, HandType handType)
+        public HandEvaluationResult(int handWeight, HandType handType, Card[] cards)
         {
             HandType = handType;
             HandWeight = handWeight;
+            Cards = cards;
+            //Description = description;
         }
 
         // on a multiplayer game, you can use this value to evaluate which hand is better.
         public int HandWeight { get; }
         public HandType HandType { get; }
+        public Card[] Cards { get; }
     }
     
     public interface IHandEvaluator

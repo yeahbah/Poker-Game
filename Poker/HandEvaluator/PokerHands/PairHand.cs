@@ -17,19 +17,21 @@ namespace Poker.HandEvaluator.HandEvalRules
                                         && !found.Any(c => c.CardValue == card.CardValue));
                 if (pair.Count() == 2)
                 {
-                    found.Add(card);
+                    found.AddRange(pair.ToArray());
                 }
             });
 
             var handWeight = cards.Sum(c => c.DefaultCardWeight);
-            if (found.Count() == 1)
-            {
-                return new HandEvaluationResult(handWeight, HandType.Pair);
-            }
-
             if (found.Count() == 2)
             {
-                return new HandEvaluationResult(handWeight, HandType.TwoPair);
+                found.AddRange(cards.Where(c => !found.Contains(c)));
+                return new HandEvaluationResult(handWeight, HandType.Pair, found.ToArray());
+            }
+
+            if (found.Count() == 4)
+            {
+                found.AddRange(cards.Where(c => !found.Contains(c)));
+                return new HandEvaluationResult(handWeight, HandType.TwoPair, found.ToArray());
             }
 
             return null;
