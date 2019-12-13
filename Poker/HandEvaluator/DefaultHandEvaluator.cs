@@ -40,7 +40,7 @@ namespace Poker.HandEvaluator
 
             Array.Sort(hand);
             var weight = cards.Sum(c => c.DefaultCardWeight);
-            return new HandEvaluationResult(weight, PokerHands.HandType.HighCard, cards);
+            return new HandEvaluationResult(weight, PokerHands.HandType.HighCard, cards, $"High Card, {cards[0]} High.");
         }
     }
 }

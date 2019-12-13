@@ -7,18 +7,19 @@ namespace Poker.HandEvaluator
 {
     public struct HandEvaluationResult
     {       
-        public HandEvaluationResult(int handWeight, HandType handType, Card[] cards)
+        public HandEvaluationResult(int handWeight, HandType handType, Card[] cards, string description)
         {
             HandType = handType;
             HandWeight = handWeight;
             Cards = cards;
-            //Description = description;
+            Description = description;
         }
 
         // on a multiplayer game, you can use this value to evaluate which hand is better.
         public int HandWeight { get; }
         public HandType HandType { get; }
         public Card[] Cards { get; }
+        public string Description { get; }
     }
     
     public interface IHandEvaluator

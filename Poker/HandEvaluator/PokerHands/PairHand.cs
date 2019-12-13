@@ -25,13 +25,13 @@ namespace Poker.HandEvaluator.HandEvalRules
             if (found.Count() == 2)
             {
                 found.AddRange(cards.Where(c => !found.Contains(c)));
-                return new HandEvaluationResult(handWeight, HandType.Pair, found.ToArray());
+                return new HandEvaluationResult(handWeight, HandType.Pair, found.ToArray(), $"Pair of {found[0].CardValue}s.");
             }
 
             if (found.Count() == 4)
             {
                 found.AddRange(cards.Where(c => !found.Contains(c)));
-                return new HandEvaluationResult(handWeight, HandType.TwoPair, found.ToArray());
+                return new HandEvaluationResult(handWeight, HandType.TwoPair, found.ToArray(), $"Two Pair, {found[0].CardValue}s and {found[2].CardValue}s.");
             }
 
             return null;

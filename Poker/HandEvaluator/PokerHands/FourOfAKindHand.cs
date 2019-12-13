@@ -26,7 +26,7 @@ namespace Poker.HandEvaluator.HandEvalRules
                 found.AddRange(cards
                     .Where(c => !found.Contains(c)));
                 var handWeight = found.Sum(c => c.DefaultCardWeight);
-                return new HandEvaluationResult(handWeight, HandType.FourOfAKind, found.ToArray());                
+                return new HandEvaluationResult(handWeight, HandType.FourOfAKind, found.ToArray(), $"Four of Kind, {cards[0].CardValue}s.");                
             }
 
             return null;

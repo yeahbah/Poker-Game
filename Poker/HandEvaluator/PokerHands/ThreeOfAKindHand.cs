@@ -30,7 +30,7 @@ namespace Poker.HandEvaluator.HandEvalRules
                 {
                     found.AddRange(cards.Where(c => !found.Contains(c)));
                     var handWeight = found.Sum(c => c.DefaultCardWeight);
-                    return new HandEvaluationResult(handWeight, HandType.ThreeOfAKind, found.ToArray());
+                    return new HandEvaluationResult(handWeight, HandType.ThreeOfAKind, found.ToArray(), $"Three of a Kind, {found[0].CardValue}s.");
                 }
             }
 

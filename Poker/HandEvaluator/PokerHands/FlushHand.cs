@@ -29,7 +29,7 @@ namespace Poker.HandEvaluator.HandEvalRules
             if (sameSuit == 5 && (new StraightHand().Evaluate(cards) == null)) 
             {
                 var handWeight = cards.Sum(card => card.DefaultCardWeight);
-                return new HandEvaluationResult(handWeight, HandType.Flush, cards);
+                return new HandEvaluationResult(handWeight, HandType.Flush, cards, $"Flush, {cards[0].CardValue} High.");
             }
 
             return null;
