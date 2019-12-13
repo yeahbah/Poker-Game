@@ -41,7 +41,7 @@ namespace Poker.Games.VideoPoker
             _hand = _deck.TakeCards(5);
         }
 
-        public decimal Play(int[] indexOfCards, decimal bet)
+        public VideoPokerResult Play(int[] indexOfCards, decimal bet)
         {
             if (_hand == null)
             {
@@ -49,7 +49,7 @@ namespace Poker.Games.VideoPoker
             }
 
             var newHand = new List<Card>();
-            if (indexOfCards.Length == 5)
+            if (indexOfCards.Length == 0)
             {
                 // redraw all 5 cards
                 newHand.AddRange(_deck.TakeCards(5));
@@ -66,15 +66,15 @@ namespace Poker.Games.VideoPoker
 
             _hand = newHand.ToArray();
             var handEvaluator = new DefaultHandEvaluator();
-            var result = handEvaluator.Evaluate(_hand);
+            var handResult = handEvaluator.Evaluate(_hand);
             var payAmount = 0m;
 
-            if (_paySchedule.TryGetValue(result.HandType, out var numUnits))
+            if (_paySchedule.TryGetValue(handResult.HandType, out var numUnits))
             {
                 payAmount = numUnits * bet;
-                if (result.HandType == HandType.Pair)
+                if (handResult.HandType == HandType.Pair)
                 {
-                    if (result.Cards[0].CardValue < CardValue.Jack)
+                    if (handResult.Cards[0].CardValue < CardValue.Jack)
                     {
                         payAmount = 0;
                     }
@@ -82,7 +82,7 @@ namespace Poker.Games.VideoPoker
             }
 
             _hand = null;
-            return payAmount;
+            return new VideoPokerResult(handResult, payAmount);
         }
     }
 }

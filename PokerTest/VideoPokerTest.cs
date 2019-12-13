@@ -33,7 +33,7 @@ namespace PokerTest
 
             var heldCards = new[] { 0, 1 };
             var result = game.Play(heldCards, 25);
-            result.ShouldBe(25);
+            result.Payout.ShouldBe(25);
         }
 
 
@@ -62,7 +62,7 @@ namespace PokerTest
 
             var heldCards = new[] { 0, 1 };
             var result = game.Play(heldCards, 25);
-            result.ShouldBe(0);
+            result.Payout.ShouldBe(0);
         }
 
         [Fact]
@@ -88,7 +88,7 @@ namespace PokerTest
 
             var heldCards = new[] { 0, 1, 2, 3 };
             var result = game.Play(heldCards, 25);
-            result.ShouldBe(50);
+            result.Payout.ShouldBe(50);
         }
 
         [Fact]
@@ -115,7 +115,28 @@ namespace PokerTest
 
             var heldCards = new[] { 0, 1, 3 };
             var result = game.Play(heldCards, 1);
-            result.ShouldBe(3);
+            result.Payout.ShouldBe(3);
+        }
+
+        [Fact]
+        public void HoldAllCards()
+        {
+            var deck = new Mock<IDeck>();
+            deck.Setup(d => d.TakeCards(5))
+                .Returns(new[]
+                {
+                    new Card(CardValue.Six, Suit.Clubs),
+                    new Card(CardValue.Seven, Suit.Diamonds),
+                    new Card(CardValue.Eight, Suit.Spades),
+                    new Card(CardValue.Nine, Suit.Hearts),
+                    new Card(CardValue.Ten, Suit.Hearts)
+                });
+            var game = new JacksOrBetter(deck.Object);
+            game.Deal();
+            int[] heldCards = { };
+            var result = game.Play(heldCards, 1);
+            result.HandEvaluationResult.HandType.ShouldBe(Poker.HandEvaluator.PokerHands.HandType.Straight);
+            result.Payout.ShouldBe(4);
         }
     }
 }

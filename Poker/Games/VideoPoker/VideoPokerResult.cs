@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Poker.HandEvaluator;
 
 namespace Poker.Games.VideoPoker
 {
     public struct VideoPokerResult
     {
-        
+        public VideoPokerResult(HandEvaluationResult handEvaluationResult, decimal payout)
+        {
+            HandEvaluationResult = handEvaluationResult;
+            Payout = payout;
+        }
+
+        public decimal Payout { get; }
+
+        public HandEvaluationResult HandEvaluationResult { get; }
     }
 }

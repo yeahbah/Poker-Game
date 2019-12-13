@@ -14,8 +14,9 @@ namespace Poker.Games.VideoPoker
         /// Draw cards from Hand then return the amount won.
         /// </summary>
         /// <param name="indexOfCards"></param>
+        /// <param name="bet"></param>
         /// <returns></returns>
-        decimal Play(int[] indexOfCards, decimal bet);
+        VideoPokerResult Play(int[] indexOfCards, decimal bet);
 
         IDictionary<HandType, decimal> PaySchedule { get; set; }
     }

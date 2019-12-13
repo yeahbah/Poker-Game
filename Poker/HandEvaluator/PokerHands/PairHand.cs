@@ -1,9 +1,8 @@
-﻿using Poker.HandEvaluator.PokerHands;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Poker.HandEvaluator.HandEvalRules
+namespace Poker.HandEvaluator.PokerHands
 {
     public class PairHand : IPokerHand
     {
@@ -14,10 +13,15 @@ namespace Poker.HandEvaluator.HandEvalRules
             Array.ForEach(cards, card =>            
             {                
                 var pair = cards.Where(c => c.CardValue == card.CardValue
-                                        && !found.Any(c => c.CardValue == card.CardValue));
-                if (pair.Count() == 2)
+                                        && !found.Any(c => c.CardValue == card.CardValue))
+                    .ToArray();
+                if (pair.Length == 2)
                 {
                     found.AddRange(pair.ToArray());
+                }
+                else if (pair.Length > 2)
+                {
+                    found.Clear();
                 }
             });
 

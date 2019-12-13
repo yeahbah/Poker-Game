@@ -1,6 +1,5 @@
 ﻿using Poker;
 using Poker.HandEvaluator;
-using Poker.HandEvaluator.HandEvalRules;
 using Poker.HandEvaluator.PokerHands;
 using Shouldly;
 using Xunit;
@@ -72,6 +71,23 @@ namespace PokerTest
             };
 
             var result = new PairHand().Evaluate(hand);
+            result.HasValue.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void FullhouseNotPairTest()
+        {
+            var hand = new[]
+            {
+                new Card(CardValue.Deuce, Suit.Clubs),
+                new Card(CardValue.Deuce, Suit.Diamonds),
+                new Card(CardValue.Four, Suit.Diamonds),
+                new Card(CardValue.Four, Suit.Spades),
+                new Card(CardValue.Deuce, Suit.Hearts)
+            };
+
+            var result = new PairHand().Evaluate(hand);
+
             result.HasValue.ShouldBeFalse();
         }
 

@@ -1,8 +1,7 @@
-﻿using Poker.HandEvaluator.PokerHands;
-using System;
+﻿using System;
 using System.Linq;
 
-namespace Poker.HandEvaluator.HandEvalRules
+namespace Poker.HandEvaluator.PokerHands
 {
     public class StraightHand : IPokerHand
     {

@@ -1,22 +1,22 @@
-﻿using Poker.HandEvaluator.HandEvalRules;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Poker.HandEvaluator.PokerHands;
 
 namespace Poker.HandEvaluator
 {
     public class DefaultHandEvaluator : IHandEvaluator
     {
-
         public DefaultHandEvaluator()
         {
             HandEvaluators = new List<IPokerHand>
             {
-                new PairHand(),
-                new ThreeOfAKindHand(),
-                new StraightHand(),
                 new FlushHand(),
-                new FourOfAKindHand()
+                new FourOfAKindHand(),
+                new FullhouseHand(),
+                new StraightHand(),
+                new ThreeOfAKindHand(),
+                new PairHand()
             };
         }
 
@@ -38,9 +38,9 @@ namespace Poker.HandEvaluator
                 }
             }
 
-            Array.Sort(hand);
+            //Array.Sort(hand);
             var weight = cards.Sum(c => c.DefaultCardWeight);
-            return new HandEvaluationResult(weight, PokerHands.HandType.HighCard, cards, $"High Card, {cards[0]} High.");
+            return new HandEvaluationResult(weight, PokerHands.HandType.HighCard, cards, $"High Card, {hand.Max(c => c.CardValue)}.");
         }
     }
 }

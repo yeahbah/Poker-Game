@@ -1,9 +1,8 @@
-﻿using Poker.HandEvaluator.PokerHands;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Poker.HandEvaluator.HandEvalRules
+namespace Poker.HandEvaluator.PokerHands
 {
     public class FourOfAKindHand : IPokerHand
     {
