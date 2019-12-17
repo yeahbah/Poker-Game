@@ -25,6 +25,7 @@ namespace PokerTest
             result.Value.HandType.ShouldBe(HandType.Straight);
         }
 
+
         [Fact]
         public void StraightFlushTest()
         {
@@ -73,6 +74,22 @@ namespace PokerTest
 
             var result = new StraightHand().Evaluate(hand);
             result.HasValue.ShouldBeFalse();         
+        }
+
+        [Fact]
+        public void NotAStraight2()
+        {
+            var hand = new[]
+            {
+                new Card(CardValue.Jack, Suit.Diamonds),
+                new Card(CardValue.Deuce, Suit.Clubs),
+                new Card(CardValue.King, Suit.Clubs),
+                new Card(CardValue.Queen, Suit.Clubs),
+                new Card(CardValue.Ace, Suit.Clubs)
+            };
+
+            var result = new StraightHand().Evaluate(hand);
+            result.HasValue.ShouldBeFalse();
         }
 
         [Fact]

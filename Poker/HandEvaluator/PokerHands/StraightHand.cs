@@ -15,7 +15,7 @@ namespace Poker.HandEvaluator.PokerHands
                 if (i < cards.Length - 1)
                 {
                     var diff = cards[i].CardValue - cards[i + 1].CardValue;
-                    ok = (diff == 1 || diff == 9); // 9 is when you have a wheel : A 5 4 3 2 
+                    ok = (diff == 1 || diff == 12); // 12 is when you have a wheel : A 5 4 3 2 
                     if (!ok)
                     {
                         break;
