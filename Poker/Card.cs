@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Poker
 {
-    public struct Card : IComparable
+    public class Card : IComparable
     {
         public Card(CardValue cardValue, Suit suit)
         {
@@ -71,7 +71,7 @@ namespace Poker
             get 
             {                
                 var cardValue = (int)CardValue;
-                var valueCode = string.Empty;
+                string valueCode;
                 if (cardValue >= 2 && cardValue <= 9) 
                 {
                     valueCode = cardValue.ToString();
@@ -92,6 +92,10 @@ namespace Poker
 
         public static bool operator ==(Card left, Card right)
         {
+            if (object.ReferenceEquals(left, null))
+            {
+                return true;
+            }
             return left.Equals(right);
         }
 

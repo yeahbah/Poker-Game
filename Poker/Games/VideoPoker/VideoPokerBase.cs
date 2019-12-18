@@ -35,11 +35,12 @@ namespace Poker.Games.VideoPoker
                 throw new InvalidOperationException("Deal the cards first.");
             }
 
-            var newHand = new Card?[5];
+            var newHand = new Card[5];
             if (indexOfCards.Length == 0)
             {
                 // redraw all 5 cards
-                Array.Copy(Deck.TakeCards(5), newHand, 5);
+                var newCards = Deck.TakeCards(5);
+                Array.Copy(newCards, newHand, 5);
             }
             else
             {
@@ -61,10 +62,10 @@ namespace Poker.Games.VideoPoker
                 }
             }
 
-            _hand = newHand
-                .Where(h => h.HasValue)
-                .Select(h => h.Value)
-                .ToArray();
+            _hand = newHand.ToArray();
+                //.Where(h => h.HasValue)
+                //.Select(h => h.Value)
+                //.ToArray();
 
             var handEvaluator = new DefaultHandEvaluator();
             var handResult = handEvaluator.Evaluate(_hand);

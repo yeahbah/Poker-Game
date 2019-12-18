@@ -133,7 +133,7 @@ namespace PokerTest
                 });
             var game = new JacksOrBetter(deck.Object);
             game.Deal();
-            int[] heldCards = { };
+            int[] heldCards = {0, 1, 2, 3, 4};
             var result = game.Play(heldCards, 1);
             result.HandEvaluationResult.HandType.ShouldBe(Poker.HandEvaluator.PokerHands.HandType.Straight);
             result.Payout.ShouldBe(4);

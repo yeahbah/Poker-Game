@@ -10,12 +10,22 @@ namespace Poker.HandEvaluator.PokerHands
             Array.Sort(cards);
             var ok = false;
             var sameSuit = 1;
-            for(var i = 0; i < cards.Length; i++)
+            var startIndex = 0;
+            if (cards[0].CardValue == CardValue.Ace && cards[4].CardValue == CardValue.Deuce)
+            {
+                startIndex = 1;
+                if (cards[0].Suit == cards[1].Suit)
+                {
+                    sameSuit++;
+                }
+            }
+
+            for(var i = startIndex; i < cards.Length; i++)
             {                
                 if (i < cards.Length - 1)
                 {
                     var diff = cards[i].CardValue - cards[i + 1].CardValue;
-                    ok = (diff == 1 || diff == 12); // 12 is when you have a wheel : A 5 4 3 2 
+                    ok = (diff == 1); 
                     if (!ok)
                     {
                         break;
