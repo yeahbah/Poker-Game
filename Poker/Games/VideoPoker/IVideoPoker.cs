@@ -18,7 +18,7 @@ namespace Poker.Games.VideoPoker
         /// <returns></returns>
         VideoPokerResult Play(int[] indexOfCards, decimal bet);
 
-        IDictionary<HandType, decimal> PaySchedule { get; set; }
+        IList<PayShedule> PaySchedule { get; set; }
 
         IDeck Deck { get; set; }
     }

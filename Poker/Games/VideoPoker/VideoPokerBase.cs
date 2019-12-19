@@ -12,13 +12,8 @@ namespace Poker.Games.VideoPoker
         private Card[] _hand;
         public Card[] Hand => _hand;
 
-        private IDictionary<HandType, decimal> _paySchedule;
-
-        public IDictionary<HandType, decimal> PaySchedule
-        {
-            get => _paySchedule;
-            set { _paySchedule = value; }
-        }
+        public IList<PayShedule> PaySchedule { get; set; }
+      
 
         public IDeck Deck { get; set; }
 
@@ -63,17 +58,14 @@ namespace Poker.Games.VideoPoker
             }
 
             _hand = newHand.ToArray();
-                //.Where(h => h.HasValue)
-                //.Select(h => h.Value)
-                //.ToArray();
-
             var handEvaluator = new DefaultHandEvaluator();
             var handResult = handEvaluator.Evaluate(_hand);
             var payAmount = 0m;
 
-            if (_paySchedule.TryGetValue(handResult.HandType, out var numUnits))
+            var pay = PaySchedule.SingleOrDefault(p => p.HandType == handResult.HandType && p.NumUnits == bet);
+            if (pay != null)
             {
-                payAmount = numUnits * bet;
+                payAmount = pay.NumUnitPay;
                 if (handResult.HandType == HandType.Pair)
                 {
                     if (handResult.Cards[0].CardValue < CardValue.Jack)
