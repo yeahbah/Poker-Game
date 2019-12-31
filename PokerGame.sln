@@ -9,12 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Poker", "Poker\Poker.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokerTest", "PokerTest\PokerTest.csproj", "{E75196DB-1D9A-4147-B825-226EF5DFDB79}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CA62C568-197D-4DD8-AC6F-51DD620E2623}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoPoker", "VideoPoker\VideoPoker.csproj", "{A132209D-CCF2-420D-966E-A1FB5A303727}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoPoker", "VideoPoker\VideoPoker.csproj", "{A132209D-CCF2-420D-966E-A1FB5A303727}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

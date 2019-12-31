@@ -9,17 +9,20 @@ namespace Poker.Games.VideoPoker
         public JacksOrBetter(IDeck deck)
         {
             PaySchedule = new List<PayShedule>();
+            var payIncrement = 0;
+            var royalPayout = 0;
             for (var numUnits = 1; numUnits <= 25; numUnits++)
             {
-                var royalPayout = 250;
                 if (numUnits >= 1 && numUnits < 5)
                 {
-                    royalPayout *= numUnits;
+                    royalPayout = 250 * numUnits;
                 }
                 else if (numUnits >= 5)
                 {
-                    // TODO verify the royal payout
-                    royalPayout = ((numUnits - 1) * royalPayout) * 4;
+                    // jumps to 4000 on a 5 unit bet
+                    // jumps 800 onwards
+                    royalPayout = 4000 + payIncrement;
+                    payIncrement += 800;
                 }
 
                 PaySchedule.Add(new PayShedule{HandType = HandType.Pair, NumUnits = numUnits, NumUnitPay = 1 * numUnits});
