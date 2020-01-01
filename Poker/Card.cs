@@ -112,7 +112,7 @@ namespace Poker
         public static bool operator <(Card left, Card right)
         {
             return left.DefaultCardWeight < right.DefaultCardWeight;
-        }        
+        }
 
         public override bool Equals(object obj)
         {
