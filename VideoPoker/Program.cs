@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace VideoPoker
 {
-    class Program
+    internal class Program
     {
         internal class GameVars
         {
@@ -27,7 +27,7 @@ namespace VideoPoker
             public IVideoPoker VideoPoker { get; set; }
         }
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             ResetConsoleColor();
@@ -183,16 +183,17 @@ namespace VideoPoker
 
         private static void DisplayHand(Card[] videoPokerHand)
         {
-            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.BackgroundColor = ConsoleColor.White;
             foreach (var c in videoPokerHand)
             {
-                //var suit = c.Suit switch
-                //{
-                //    Suit.Clubs => Strings.ChrW(2663),
-                //    Suit.Diamonds => Strings.ChrW(2666),
-                //    Suit.Hearts => Strings.ChrW(2665),
-                //    Suit.Spades => Strings.ChrW(2660)
-                //};
+                Console.ForegroundColor = c.Suit switch
+                {
+                    Suit.Diamonds => ConsoleColor.Blue,
+                    Suit.Clubs => ConsoleColor.DarkGreen,
+                    Suit.Hearts => ConsoleColor.Red,
+                    Suit.Spades => ConsoleColor.Black,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
                 Console.Write(c.ShortCode + " ");
             }
 
