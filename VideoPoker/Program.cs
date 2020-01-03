@@ -33,7 +33,9 @@ namespace VideoPoker
             ResetConsoleColor();
             Console.WriteLine("Jacks or Better.\n");
 
-            var game = InitializeGame();
+            Console.Write("How much do you want to play with? ");
+            var money = decimal.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
+            var game = InitializeGame(money);
 
             var play = true;
             var handNumber = 0;
@@ -59,7 +61,7 @@ namespace VideoPoker
                     var key = Console.ReadKey().Key;
                     if (key == ConsoleKey.F1)
                     {
-                        InitializeGame();
+                        game = InitializeGame(game.Money);
                     }
                     else
                     {
@@ -98,7 +100,7 @@ namespace VideoPoker
             return result;
         }
 
-        private static GameVars InitializeGame()
+        private static GameVars InitializeGame(decimal playerMoney)
         {
             Console.Write("\nSet your unit bet (1 - 5cents, 2 - 25cents, 3 - $1): ");
             var unitValueInput = Console.ReadLine() ?? "1";
@@ -117,7 +119,7 @@ namespace VideoPoker
 
             var betSize = unitValue * numUnits;
             Console.WriteLine($"Your bet size: {betSize:C}");
-            var game = new GameVars(unitValue, numUnits, 100, new JacksOrBetter(new Deck()));
+            var game = new GameVars(unitValue, numUnits, playerMoney, new JacksOrBetter(new Deck()));
             Console.WriteLine($"You have {game.Money:C}");
             DisplayGameInfo(game);
 
