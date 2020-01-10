@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokerTest", "PokerTest\Poke
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoPoker", "VideoPoker\VideoPoker.csproj", "{A132209D-CCF2-420D-966E-A1FB5A303727}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackjackConsole", "BlackjackConsole\BlackjackConsole.csproj", "{DA0BAB2B-9618-4929-814A-0EAB42E3AAD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackjackConsole", "BlackjackConsole\BlackjackConsole.csproj", "{DA0BAB2B-9618-4929-814A-0EAB42E3AAD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoPokerWeb", "VideoPokerWeb\VideoPokerWeb.csproj", "{1C5F5967-3CDA-4376-9E00-C62425C249F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{DA0BAB2B-9618-4929-814A-0EAB42E3AAD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA0BAB2B-9618-4929-814A-0EAB42E3AAD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA0BAB2B-9618-4929-814A-0EAB42E3AAD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C5F5967-3CDA-4376-9E00-C62425C249F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C5F5967-3CDA-4376-9E00-C62425C249F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C5F5967-3CDA-4376-9E00-C62425C249F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C5F5967-3CDA-4376-9E00-C62425C249F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
