@@ -42,21 +42,21 @@ namespace BlackjackConsole
 
                 var playerScore = GetScore(player.CurrentHand);
                 Console.Write($"Your hand: ");
-                Console.BackgroundColor = ConsoleColor.Blue;
+                // Console.BackgroundColor = ConsoleColor.Blue;
                 Console.WriteLine(
                     $"{player.CurrentHand[0].ShortCode}{player.CurrentHand[1].ShortCode} = {playerScore}");
                 ResetConsoleColor();
 
                 var dealerScore = GetScore(dealerHand);
                 Console.Write($"Dealer shows: ");
-                Console.BackgroundColor = ConsoleColor.Blue;
+                // Console.BackgroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"{dealerHand[0].ShortCode}");
                 ResetConsoleColor();
 
                 if (dealerScore == 21 && playerScore == 21)
                 {
                     Console.Write($"Dealer hand: ");
-                    Console.BackgroundColor = ConsoleColor.Blue;
+                    // Console.BackgroundColor = ConsoleColor.Blue;
                     Console.WriteLine($"{dealerHand[0].ShortCode}");
                     ResetConsoleColor();
 
@@ -67,7 +67,7 @@ namespace BlackjackConsole
                 else if (dealerScore == 21)
                 {
                     Console.Write($"Dealer hand: ");
-                    Console.BackgroundColor = ConsoleColor.Blue;
+                    // Console.BackgroundColor = ConsoleColor.Blue;
                     Console.WriteLine($"{dealerHand[0].ShortCode}{dealerHand[1].ShortCode}");
                     ResetConsoleColor();
 
@@ -80,7 +80,7 @@ namespace BlackjackConsole
                     player.Money += win;
                     Console.WriteLine($"Blackjack! You win {win}");
                     Console.Write($"Dealer hand: ");
-                    Console.BackgroundColor = ConsoleColor.Blue;
+                    // Console.BackgroundColor = ConsoleColor.Blue;
                     Console.WriteLine($"{dealerHand[0].ShortCode}{dealerHand[1].ShortCode}");
                     ResetConsoleColor();
 
@@ -109,7 +109,7 @@ namespace BlackjackConsole
                                 {
                                     Console.WriteLine("Bust. You lose!");
                                     Console.Write($"Dealer hand: ");
-                                    Console.BackgroundColor = ConsoleColor.Blue;
+                                    // Console.BackgroundColor = ConsoleColor.Blue;
                                     Console.WriteLine($"{dealerHand[0].ShortCode}{dealerHand[1].ShortCode}");
                                     ResetConsoleColor();
 
@@ -136,7 +136,7 @@ namespace BlackjackConsole
         private static void Evaluate(ref Card[] dealerHand, Player player)
         {
             Console.Write($"Dealer hand: ");
-            Console.BackgroundColor = ConsoleColor.Blue;
+            // Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine($"{dealerHand[0].ShortCode}{dealerHand[1].ShortCode}");
             ResetConsoleColor();
 
