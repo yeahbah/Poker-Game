@@ -1,0 +1,88 @@
+Blackjack game
+
+* Up to 8 players
+* Support for different rules, e.g. Double after split, no split on aces etc.
+* The last player is always the dealer
+
+
+Game states
+  * Shuffling
+	Triggers:
+		1. New game
+		2. End game
+
+  * Dealing
+	Triggers:
+		1. Deal
+  * DoneDealing
+
+  * PlayHand
+	Triggers:
+		1. Play hand (param: player #)
+
+  * Dealer bj
+	Triggers: 
+		1. Dealer has bj
+
+  * Player bj
+
+  * Dealer Holecard Peek:
+	Triggers:
+		1. Done dealing (param: dealer up card)
+
+		
+GameFlow
+
+  Shuffling
+	-> Triggered by NewGame
+	-> Betting round (param: list of players)
+
+  Betting
+	-> Player bet
+	-> Deal
+
+  Dealing
+  	-> Triggered by Deal
+	-> DoneDealing
+
+  DoneDealing
+	-> Dealer peek hole card
+	-> Dealer bj
+	-> End game
+	-> Play (param: player list)
+
+  Play
+	-> PlayHand
+	-> Dealer reveal
+
+  PlayHand
+	-> triggered by DoneDealing
+	-> Player bj (param: player #)
+	-> Action (param: action code, rule params)
+		-> Draw
+		-> Stay
+		-> Split (can split aces?)
+		-> Double Down (on values 9, 10, 11 only?)
+		-> Surrender (can surrender 15, 16)
+
+  DealerReveal
+	-> Evaluate (param: player list)
+	-> Draw
+	-> Bust
+
+  Evaluate
+	-> PlayerLost(param: player)
+	-> PlayerWin
+	-> End game
+
+  EndGame
+	-> Reset 
+
+
+
+
+  	
+
+
+
+  

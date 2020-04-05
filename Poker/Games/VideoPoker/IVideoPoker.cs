@@ -21,5 +21,9 @@ namespace Poker.Games.VideoPoker
         IList<PayShedule> PaySchedule { get; set; }
 
         IDeck Deck { get; set; }
+
+        GameVars GameVars {get; set;}
+
+        GameState Status { get; }
     }
 }
