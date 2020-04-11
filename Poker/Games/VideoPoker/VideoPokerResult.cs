@@ -4,15 +4,15 @@ namespace Poker.Games.VideoPoker
 {
     public struct VideoPokerResult
     {
-        public VideoPokerResult(HandEvaluationResult handEvaluationResult, decimal payoutInUnits, decimal payoutValue)
+        public VideoPokerResult(HandEvaluationResult handEvaluationResult, decimal payoutInUnits, decimal payoutMoney)
         {
             Hand = handEvaluationResult;
             PayoutInUnits = payoutInUnits;
-            PayoutValue = payoutValue;
+            PayoutMoney = payoutMoney;
         }
 
         public decimal PayoutInUnits { get; }
-        public decimal PayoutValue { get; }
+        public decimal PayoutMoney { get; }
         public HandEvaluationResult Hand { get; }
         
     }

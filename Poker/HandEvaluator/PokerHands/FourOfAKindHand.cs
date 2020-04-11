@@ -8,7 +8,7 @@ namespace Poker.HandEvaluator.PokerHands
     {
         public HandEvaluationResult? Evaluate(Card[] cards)
         {
-            Array.Sort(cards);
+            Array.Sort(cards.ToArray());
             var found = new List<Card>();
             Array.ForEach(cards, card =>
             {
@@ -25,7 +25,7 @@ namespace Poker.HandEvaluator.PokerHands
                 found.AddRange(cards
                     .Where(c => !found.Contains(c)));
                 var handWeight = found.Sum(c => c.DefaultCardWeight);
-                return new HandEvaluationResult(handWeight, HandType.FourOfAKind, found.ToArray(), $"Four of Kind, {found[0].CardValue}s.");                
+                return new HandEvaluationResult(handWeight, HandType.FourOfAKind, cards, $"Four of Kind, {found[0].CardValue}s.");                
             }
 
             return null;

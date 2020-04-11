@@ -47,8 +47,8 @@ namespace VideoPoker
                 var result = Play(game);
 
                 // var win = result.Payout * game.UnitValue;
-                game.Money += result.PayoutValue;
-                Console.WriteLine($"You won {result.PayoutValue:C}!");
+                game.Money += result.PayoutMoney;
+                Console.WriteLine($"You won {result.PayoutMoney:C}!");
                 if (game.Money == 0)
                 {
                     Console.WriteLine("You are broke. Go home and be a family man.");

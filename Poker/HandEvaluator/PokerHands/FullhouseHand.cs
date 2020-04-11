@@ -10,7 +10,7 @@ namespace Poker.HandEvaluator.PokerHands
     {
         public HandEvaluationResult? Evaluate(Card[] cards)
         {
-            Array.Sort(cards);
+            Array.Sort(cards.ToArray());
             var found = new List<Card>();
             var trips = new Card[] { };
             var pair = new Card[] { };
@@ -35,7 +35,7 @@ namespace Poker.HandEvaluator.PokerHands
             if (trips.Any() && pair.Any())
             {
                 return new HandEvaluationResult(cards.Sum(c => c.DefaultCardWeight), 
-                    HandType.Fullhouse, found.ToArray(), $"Fullhouse, {trips[0].CardValue}s full of {pair[0].CardValue}s");
+                    HandType.Fullhouse, cards, $"Fullhouse, {trips[0].CardValue}s full of {pair[0].CardValue}s");
             }
 
             return null;

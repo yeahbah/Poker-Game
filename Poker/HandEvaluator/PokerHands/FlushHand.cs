@@ -7,7 +7,7 @@ namespace Poker.HandEvaluator.PokerHands
     {
         public HandEvaluationResult? Evaluate(Card[] cards)
         {            
-            Array.Sort(cards);
+            Array.Sort(cards.ToArray());
             var sameSuit = 1;
             for(var i = 0; i < cards.Length; i++)
             {

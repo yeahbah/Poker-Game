@@ -10,7 +10,7 @@ namespace Poker.HandEvaluator
         {
             HandType = handType;
             HandWeight = handWeight;
-            Cards = cards;
+            Cards = cards.ToArray();
             Description = description;
         }
 

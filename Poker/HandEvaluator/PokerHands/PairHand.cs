@@ -8,7 +8,7 @@ namespace Poker.HandEvaluator.PokerHands
     {
         public HandEvaluationResult? Evaluate(Card[] cards)
         {
-            Array.Sort(cards);
+            Array.Sort(cards.ToArray());
             var found = new List<Card>();
             Array.ForEach(cards, card =>            
             {                
@@ -29,13 +29,13 @@ namespace Poker.HandEvaluator.PokerHands
             if (found.Count() == 2)
             {
                 found.AddRange(cards.Where(c => !found.Contains(c)));
-                return new HandEvaluationResult(handWeight, HandType.Pair, found.ToArray(), $"Pair of {found[0].CardValue}s.");
+                return new HandEvaluationResult(handWeight, HandType.Pair, cards, $"Pair of {found[0].CardValue}s.");
             }
 
             if (found.Count() == 4)
             {
                 found.AddRange(cards.Where(c => !found.Contains(c)));
-                return new HandEvaluationResult(handWeight, HandType.TwoPair, found.ToArray(), $"Two Pair, {found[0].CardValue}s and {found[2].CardValue}s.");
+                return new HandEvaluationResult(handWeight, HandType.TwoPair, cards, $"Two Pair, {found[0].CardValue}s and {found[2].CardValue}s.");
             }
 
             return null;
