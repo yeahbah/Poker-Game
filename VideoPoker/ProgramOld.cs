@@ -46,9 +46,9 @@ namespace VideoPoker
 
                 var result = Play(game);
 
-                var win = result.Payout * game.UnitValue;
-                game.Money += win;
-                Console.WriteLine($"You won {win:C}!");
+                // var win = result.Payout * game.UnitValue;
+                game.Money += result.PayoutValue;
+                Console.WriteLine($"You won {result.PayoutValue:C}!");
                 if (game.Money == 0)
                 {
                     Console.WriteLine("You are broke. Go home and be a family man.");
@@ -93,10 +93,10 @@ namespace VideoPoker
             }
 
             //var bet = game.Bet();
-            var result = game.VideoPoker.Play(holdIndeces.ToArray(), game.NumUnits);
-            DisplayHand(result.HandEvaluationResult.Cards);
+            var result = game.VideoPoker.Draw(holdIndeces.ToArray());
+            DisplayHand(result.Hand.Cards);
 
-            Console.WriteLine(result.HandEvaluationResult.Description);
+            Console.WriteLine(result.Hand.Description);
             return result;
         }
 
@@ -144,7 +144,7 @@ namespace VideoPoker
 
             Console.WriteLine("----------------------------------+");
         }
-
+        
         private static string GetDescription(HandType handType)
         {
             var result = "";

@@ -1,22 +1,11 @@
-﻿using Poker;
-using Poker.HandEvaluator.PokerHands;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Poker.HandEvaluator;
 
 namespace Poker.Games.VideoPoker
 {
     public interface IVideoPoker
     {
-        Card[] Hand { get; }
-
-        void Deal();
-
-        /// <summary>
-        /// Draw cards from Hand then return the amount won.
-        /// </summary>
-        /// <param name="indexOfCards"></param>
-        /// <param name="bet"></param>
-        /// <returns></returns>
-        VideoPokerResult Play(int[] indexOfCards, decimal bet);
+        Card[] Hand { get; }        
 
         IList<PayShedule> PaySchedule { get; set; }
 
@@ -24,6 +13,12 @@ namespace Poker.Games.VideoPoker
 
         GameVars GameVars {get; set;}
 
-        GameState Status { get; }
+        void NewGame();
+        void SelectUnitSize(decimal unitSize);
+        void SelectBetSize(short betSize);
+        void DepositMoney(decimal depositAmount);
+        HandEvaluationResult Deal();
+
+        VideoPokerResult Draw(int[] heldCardsIndeces);        
     }
 }

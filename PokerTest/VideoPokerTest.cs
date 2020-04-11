@@ -32,8 +32,8 @@ namespace PokerTest
             game.Deal();
 
             var heldCards = new[] { 0, 1 };
-            var result = game.Play(heldCards, 25);
-            result.Payout.ShouldBe(25);
+            var result = game.Draw(heldCards);
+            result.PayoutInUnits.ShouldBe(25);
         }
 
 
@@ -61,8 +61,8 @@ namespace PokerTest
             game.Deal();
 
             var heldCards = new[] { 0, 1 };
-            var result = game.Play(heldCards, 25);
-            result.Payout.ShouldBe(0);
+            var result = game.Draw(heldCards);
+            result.PayoutInUnits.ShouldBe(0);
         }
 
         [Fact]
@@ -87,8 +87,8 @@ namespace PokerTest
             game.Deal();
 
             var heldCards = new[] { 0, 1, 2, 3 };
-            var result = game.Play(heldCards, 25);
-            result.Payout.ShouldBe(50);
+            var result = game.Draw(heldCards);
+            result.PayoutInUnits.ShouldBe(50);
         }
 
         [Fact]
@@ -114,8 +114,8 @@ namespace PokerTest
             game.Deal();
 
             var heldCards = new[] { 0, 1, 3 };
-            var result = game.Play(heldCards, 1);
-            result.Payout.ShouldBe(3);
+            var result = game.Draw(heldCards);
+            result.PayoutInUnits.ShouldBe(3);
         }
 
         [Fact]
@@ -134,9 +134,9 @@ namespace PokerTest
             var game = new JacksOrBetter(deck.Object);
             game.Deal();
             int[] heldCards = {0, 1, 2, 3, 4};
-            var result = game.Play(heldCards, 1);
-            result.HandEvaluationResult.HandType.ShouldBe(Poker.HandEvaluator.PokerHands.HandType.Straight);
-            result.Payout.ShouldBe(4);
+            var result = game.Draw(heldCards);
+            result.Hand.HandType.ShouldBe(Poker.HandEvaluator.PokerHands.HandType.Straight);
+            result.PayoutInUnits.ShouldBe(4);
         }
     }
 }
