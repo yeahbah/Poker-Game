@@ -11,7 +11,7 @@ namespace Poker.Games.VideoPoker
 
         public decimal UnitSize { get; set; }
         public int BetSize { get; set; }
-        public decimal AbsoluteBetSize => UnitSize * BetSize;
+        public decimal BetSizeMoney => UnitSize * BetSize;
         public decimal Money { get; set; }        
     }
 }

@@ -13,4 +13,8 @@
     <ProjectReference Include="..\Poker\Poker.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>

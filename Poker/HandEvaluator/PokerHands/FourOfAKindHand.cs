@@ -6,26 +6,27 @@ namespace Poker.HandEvaluator.PokerHands
 {
     public class FourOfAKindHand : IPokerHand
     {
-        public HandEvaluationResult? Evaluate(Card[] cards)
+        public HandEvaluationResult? Evaluate(Card[] hand)
         {
-            Array.Sort(cards);
+            var cards = hand.ToArray();
+            Array.Sort(cards.ToArray());
             var found = new List<Card>();
-            Array.ForEach(cards, card =>
+            Array.ForEach(hand, card =>
             {
                 var quad = cards.Where(c => c.CardValue == card.CardValue
                                         && !found.Any(c => c.CardValue == card.CardValue));
                 if (quad.Count() == 4)
                 {
-                    found.Add(card);
+                    found.AddRange(quad.ToArray());
                 }
             });
 
             if (found.Any())
             {
-                found.AddRange(cards
-                    .Where(c => !found.Contains(c)));
+                //found.AddRange(hand
+                //    .Where(c => !found.Contains(c)));
                 var handWeight = found.Sum(c => c.DefaultCardWeight);
-                return new HandEvaluationResult(handWeight, HandType.FourOfAKind, found.ToArray(), $"Four of Kind, {found[0].CardValue}s.");                
+                return new HandEvaluationResult(handWeight, HandType.FourOfAKind, hand, found.ToArray(), $"Four of Kind, {found[0].CardValue}s.");                
             }
 
             return null;

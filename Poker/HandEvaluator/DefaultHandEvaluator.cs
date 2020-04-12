@@ -26,21 +26,22 @@ namespace Poker.HandEvaluator
         }
         public IDictionary<Card, int> CardWeight { get; set; }
 
-        public HandEvaluationResult Evaluate(Card[] cards)
-        {
-            var hand = cards.Take(5).ToArray();
+        public HandEvaluationResult Evaluate(Card[] hand)
+        {            
+            var cards = hand.Take(5).ToArray();
             foreach(var handEvaluator in HandEvaluators)
             {
-                var result = handEvaluator.Evaluate(hand);
+                var result = handEvaluator.Evaluate(cards);
                 if (result.HasValue)
                 {
                     return result.Value;
                 }
             }
 
-            //Array.Sort(hand);
-            var weight = cards.Sum(c => c.DefaultCardWeight);
-            return new HandEvaluationResult(weight, PokerHands.HandType.HighCard, cards, $"High Card, {hand.Max(c => c.CardValue)}.");
+            Array.Sort(cards);
+            Array.Resize(ref cards, 1);
+            var weight = hand.Sum(c => c.DefaultCardWeight);
+            return new HandEvaluationResult(weight, HandType.HighCard, hand, cards, $"High Card, {cards[0].CardValue}.");                    
         }
     }
 }

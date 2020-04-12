@@ -29,6 +29,9 @@ namespace PokerTest
                     new Card(CardValue.Ten, Suit.Hearts)
                 });
             var game = new JacksOrBetter(deck.Object);
+            game.DepositMoney(100);
+            game.SelectUnitSize(1);
+            game.SelectBetSize(25);
             game.Deal();
 
             var heldCards = new[] { 0, 1 };
@@ -44,8 +47,8 @@ namespace PokerTest
             deck.Setup(d => d.TakeCards(5))
                 .Returns(new[]
                 {
-                    new Card(CardValue.Ten, Suit.Clubs),
-                    new Card(CardValue.Ten, Suit.Diamonds),
+                    new Card(CardValue.Five, Suit.Clubs),
+                    new Card(CardValue.Five, Suit.Diamonds),
                     new Card(CardValue.Deuce, Suit.Diamonds),
                     new Card(CardValue.King, Suit.Spades),
                     new Card(CardValue.Trey, Suit.Hearts)
@@ -58,6 +61,9 @@ namespace PokerTest
                     new Card(CardValue.Trey, Suit.Hearts)
                 });
             var game = new JacksOrBetter(deck.Object);
+            game.DepositMoney(100);
+            game.SelectUnitSize(0.25m);
+            game.SelectBetSize(5);
             game.Deal();
 
             var heldCards = new[] { 0, 1 };
@@ -84,6 +90,9 @@ namespace PokerTest
                     new Card(CardValue.Trey, Suit.Diamonds)                    
                 });
             var game = new JacksOrBetter(deck.Object);
+            game.DepositMoney(100);
+            game.SelectUnitSize(1);
+            game.SelectBetSize(25);
             game.Deal();
 
             var heldCards = new[] { 0, 1, 2, 3 };
@@ -111,6 +120,7 @@ namespace PokerTest
                     new Card(CardValue.Five, Suit.Diamonds)
                 });
             var game = new JacksOrBetter(deck.Object);
+            game.DepositMoney(100);
             game.Deal();
 
             var heldCards = new[] { 0, 1, 3 };
@@ -132,10 +142,11 @@ namespace PokerTest
                     new Card(CardValue.Ten, Suit.Hearts)
                 });
             var game = new JacksOrBetter(deck.Object);
+            game.DepositMoney(100);
             game.Deal();
             int[] heldCards = {0, 1, 2, 3, 4};
             var result = game.Draw(heldCards);
-            result.Hand.HandType.ShouldBe(Poker.HandEvaluator.PokerHands.HandType.Straight);
+            result.HandEvaluationResult.HandType.ShouldBe(Poker.HandEvaluator.PokerHands.HandType.Straight);
             result.PayoutInUnits.ShouldBe(4);
         }
     }

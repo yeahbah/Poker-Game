@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Poker.HandEvaluator.PokerHands
 {
     public class FullhouseHand : IPokerHand
     {
-        public HandEvaluationResult? Evaluate(Card[] cards)
+        public HandEvaluationResult? Evaluate(Card[] hand)
         {
-            Array.Sort(cards);
+            var cards = hand.ToArray();
+            Array.Sort(cards.ToArray());
             var found = new List<Card>();
             var trips = new Card[] { };
             var pair = new Card[] { };
-            Array.ForEach(cards, card =>
+            Array.ForEach(hand, card =>
             {
                 var x = cards.Where(c => c.CardValue == card.CardValue
                                              && !found.Any(c => c.CardValue == card.CardValue))
@@ -35,7 +34,7 @@ namespace Poker.HandEvaluator.PokerHands
             if (trips.Any() && pair.Any())
             {
                 return new HandEvaluationResult(cards.Sum(c => c.DefaultCardWeight), 
-                    HandType.Fullhouse, found.ToArray(), $"Fullhouse, {trips[0].CardValue}s full of {pair[0].CardValue}s");
+                    HandType.Fullhouse, hand, cards, $"Fullhouse, {trips[0].CardValue}s full of {pair[0].CardValue}s");
             }
 
             return null;

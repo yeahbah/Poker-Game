@@ -28,7 +28,7 @@ namespace VideoPoker
                 var hand = _game.Deal();                
                 Console.WriteLine($"{hand.Description}");
 
-                DisplayHand(hand.Cards);
+                DisplayHand(hand.Hand.ToArray());
                 Console.WriteLine("1  2  3  4  5");
 
                 Console.Write("Enter the numbers of the card(s) you want to hold: ");
@@ -42,16 +42,17 @@ namespace VideoPoker
                 }
 
                 var result = _game.Draw(holdIndeces.ToArray());
-                DisplayHand(result.Hand.Cards);
+                DisplayHand(result.HandEvaluationResult.Hand.ToArray());
                                 
                 play = DisplayResult(result);
+
             }
         }
 
         private static bool DisplayResult(VideoPokerResult result)
         {
-            Console.WriteLine(result.Hand.Description);                                                        
-            Console.WriteLine($"You won {result.PayoutValue:C}!");
+            Console.WriteLine(result.HandEvaluationResult.Description);                                                        
+            Console.WriteLine($"You won {result.PayoutMoney:C}!");
             if (_game.GameVars.Money == 0)                
             {
                 Console.WriteLine("You are broke. Go home and be a family man.");
@@ -65,7 +66,7 @@ namespace VideoPoker
                 if (key == ConsoleKey.F1)
                 {
                     _game = InitializeGame();
-                    return false;
+                    return true;
                 }
                 else
                 {
@@ -78,14 +79,14 @@ namespace VideoPoker
 
         private static void DisplayHand(Card[] videoPokerHand)
         {
-            Console.BackgroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.White;            
             foreach (var c in videoPokerHand)
             {
                 Console.ForegroundColor = c.Suit switch
                 {
-                    Suit.Diamonds => ConsoleColor.Blue,
+                    Suit.Diamonds => ConsoleColor.DarkBlue,
                     Suit.Clubs => ConsoleColor.DarkGreen,
-                    Suit.Hearts => ConsoleColor.Red,
+                    Suit.Hearts => ConsoleColor.DarkRed,
                     Suit.Spades => ConsoleColor.Black,
                     _ => throw new ArgumentOutOfRangeException()
                 };
@@ -101,10 +102,14 @@ namespace VideoPoker
             var game = new JacksOrBetter(new Deck());                        
             if (forceDeposit) 
             {
-                Console.WriteLine("How much do you want to play with?");
+                Console.Write("How much do you want to play with? ");
                 var depositAmount = decimal.Parse(Console.ReadLine() ?? throw new InvalidOperationException());                            
                 game.DepositMoney(depositAmount);
-            }            
+            }     
+            else
+            {
+                game.GameVars.Money = _game.GameVars.Money;
+            }       
 
             Console.Write("\nSet your unit size (1 - 5cents, 2 - 25cents, 3 - $1): ");
             var unitValueInput = Console.ReadLine() ?? "1";
@@ -117,7 +122,7 @@ namespace VideoPoker
             };
             game.SelectUnitSize(unitSize);
 
-            Console.Write("How many units (1 to 25):");
+            Console.Write("How many units (1 to 25): ");
             if (!short.TryParse(Console.ReadLine(), out var numUnits))
             {
                 numUnits = 1;
@@ -192,8 +197,9 @@ namespace VideoPoker
 
         private static void ResetConsoleColor()
         {
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ResetColor();
+            // Console.BackgroundColor = ConsoleColor.Black;
+            // Console.ForegroundColor = ConsoleColor.White;
         }        
 
     }

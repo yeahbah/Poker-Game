@@ -5,8 +5,9 @@ namespace Poker.HandEvaluator.PokerHands
 {
     public class FlushHand : IPokerHand
     {
-        public HandEvaluationResult? Evaluate(Card[] cards)
-        {            
+        public HandEvaluationResult? Evaluate(Card[] hand)
+        {
+            var cards = hand.ToArray();
             Array.Sort(cards);
             var sameSuit = 1;
             for(var i = 0; i < cards.Length; i++)
@@ -22,10 +23,10 @@ namespace Poker.HandEvaluator.PokerHands
             }
 
             // should we be worried a straight flushes or just leave it to the evaluator?            
-            if (sameSuit == 5 && (new StraightHand().Evaluate(cards) == null)) 
+            if (sameSuit == 5 && (new StraightHand().Evaluate(hand) == null)) 
             {
                 var handWeight = cards.Sum(card => card.DefaultCardWeight);
-                return new HandEvaluationResult(handWeight, HandType.Flush, cards, $"Flush, {cards[0].CardValue} High.");
+                return new HandEvaluationResult(handWeight, HandType.Flush, hand, cards, $"Flush, {cards[0].CardValue} High.");
             }
 
             return null;

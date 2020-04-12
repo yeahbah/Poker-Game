@@ -11,16 +11,26 @@ namespace VideoPokerWeb.Controllers
     public class HomeController : Controller
     {
         public IActionResult Index()
-        {
-            var deck = new Deck();
-            var hand = deck.TakeCards(5);
-            var videoPoker = new VideoPokerModel
-            {
-                Hand = hand.ToArray(),
-                HoldCardIndex = new int[] {}
-            };
+        {            
+            return View();
+        }
 
-            return View(videoPoker);
+        [Route("/Home/Game/{gameId:int}")]
+        public IActionResult SelectGame(int gameId)
+        {
+            return RedirectToAction("Index", "JacksOrBetter");
+        }
+
+        [Route("Home/BetUnit/{size:int}")]
+        public IActionResult BetUnit(int size)
+        {
+            ViewBag.BetUnit = size switch
+            {
+                2 => 0.25,
+                3 => 1,
+                _ => 0.05
+            };
+            return RedirectToAction("Index", "Home");
         }
     }
 }

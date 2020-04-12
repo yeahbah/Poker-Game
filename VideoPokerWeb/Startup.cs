@@ -30,6 +30,7 @@ namespace VideoPokerWeb
             }
 
             app.UseRouting();
+            app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
 
             //app.UseEndpoints(endpoints =>

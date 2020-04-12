@@ -5,8 +5,9 @@ namespace Poker.HandEvaluator.PokerHands
 {
     public class StraightHand : IPokerHand
     {
-        public HandEvaluationResult? Evaluate(Card[] cards)
+        public HandEvaluationResult? Evaluate(Card[] hand)
         {
+            var cards = hand.ToArray();
             Array.Sort(cards);
             var ok = false;
             var sameSuit = 1;
@@ -43,7 +44,7 @@ namespace Poker.HandEvaluator.PokerHands
                 var firstCardIsAnAce = cards[0].CardValue == CardValue.Ace;                
                 if (sameSuit == 5 && firstCardIsAnAce && cards[4].CardValue == CardValue.Ten)
                 {                    
-                    return new HandEvaluationResult(handWeight, HandType.RoyalFlush, cards, $"Royal Straight Flush.");
+                    return new HandEvaluationResult(handWeight, HandType.RoyalFlush, hand, cards, $"Royal Straight Flush.");
                 }
 
                 if (firstCardIsAnAce)
@@ -53,9 +54,9 @@ namespace Poker.HandEvaluator.PokerHands
 
                 if (sameSuit == 5)
                 {
-                    return new HandEvaluationResult(handWeight, HandType.StraightFlush, cards, $"Straight Flush to {cards[0].CardValue}");
+                    return new HandEvaluationResult(handWeight, HandType.StraightFlush, hand, cards, $"Straight Flush to {cards[0].CardValue}");
                 }
-                return new HandEvaluationResult(handWeight, HandType.Straight, cards, $"Straight to {cards[0].CardValue}.");
+                return new HandEvaluationResult(handWeight, HandType.Straight, hand, cards, $"Straight to {cards[0].CardValue}.");
             }
 
             return null;
