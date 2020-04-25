@@ -33,7 +33,7 @@ namespace Poker.Games.VideoPoker
             _gameVars.UnitSize = unitSize;
         }
 
-        public void SelectBetSize(short betSize) 
+        public void SelectBetSize(int betSize) 
         {
             if (betSize <= 0)
                 return;
@@ -43,7 +43,7 @@ namespace Poker.Games.VideoPoker
 
         public Card[] Hand { get; private set; }
 
-        public IList<PayShedule> PaySchedule { get; set; }
+        public IList<PaySchedule> PaySchedule { get; set; }
 
 
         public VideoPokerBase(IDeck deck)
@@ -130,6 +130,12 @@ namespace Poker.Games.VideoPoker
             Hand = Array.Empty<Card>();
 
             return result;
-        }        
+        }
+
+        public VideoPokerResult Draw(Card[] cards, int[] heldCardsIndeces)
+        {
+            Hand = cards.ToArray();
+            return Draw(heldCardsIndeces);
+        }
     }
 }

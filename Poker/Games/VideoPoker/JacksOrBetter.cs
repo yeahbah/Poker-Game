@@ -8,7 +8,7 @@ namespace Poker.Games.VideoPoker
         // 9-6 Jacks or better
         public JacksOrBetter(IDeck deck)
         {
-            PaySchedule = new List<PayShedule>();
+            PaySchedule = new List<PaySchedule>();
             var payIncrement = 0;
             var royalPayout = 0;
             for (var numUnits = 1; numUnits <= 25; numUnits++)
@@ -25,15 +25,15 @@ namespace Poker.Games.VideoPoker
                     payIncrement += 800;
                 }
 
-                PaySchedule.Add(new PayShedule{HandType = HandType.Pair, BetSize = numUnits, PaySizeInUnits = 1 * numUnits});
-                PaySchedule.Add(new PayShedule{HandType = HandType.TwoPair, BetSize = numUnits, PaySizeInUnits = 2 * numUnits});
-                PaySchedule.Add(new PayShedule{HandType = HandType.ThreeOfAKind, BetSize = numUnits, PaySizeInUnits = 3 * numUnits});
-                PaySchedule.Add(new PayShedule{HandType = HandType.Straight, BetSize = numUnits, PaySizeInUnits = 4 * numUnits});
-                PaySchedule.Add(new PayShedule{HandType = HandType.Flush, BetSize = numUnits, PaySizeInUnits = 6 * numUnits});
-                PaySchedule.Add(new PayShedule{HandType = HandType.Fullhouse, BetSize = numUnits, PaySizeInUnits = 9 * numUnits});
-                PaySchedule.Add(new PayShedule{HandType = HandType.FourOfAKind, BetSize = numUnits, PaySizeInUnits = 25 * numUnits});
-                PaySchedule.Add(new PayShedule{HandType = HandType.StraightFlush, BetSize = numUnits, PaySizeInUnits = 50 * numUnits});
-                PaySchedule.Add(new PayShedule{HandType = HandType.RoyalFlush, BetSize = numUnits, PaySizeInUnits = royalPayout});
+                PaySchedule.Add(new PaySchedule{HandType = HandType.Pair, BetSize = numUnits, PaySizeInUnits = 1 * numUnits});
+                PaySchedule.Add(new PaySchedule{HandType = HandType.TwoPair, BetSize = numUnits, PaySizeInUnits = 2 * numUnits});
+                PaySchedule.Add(new PaySchedule{HandType = HandType.ThreeOfAKind, BetSize = numUnits, PaySizeInUnits = 3 * numUnits});
+                PaySchedule.Add(new PaySchedule{HandType = HandType.Straight, BetSize = numUnits, PaySizeInUnits = 4 * numUnits});
+                PaySchedule.Add(new PaySchedule{HandType = HandType.Flush, BetSize = numUnits, PaySizeInUnits = 6 * numUnits});
+                PaySchedule.Add(new PaySchedule{HandType = HandType.Fullhouse, BetSize = numUnits, PaySizeInUnits = 9 * numUnits});
+                PaySchedule.Add(new PaySchedule{HandType = HandType.FourOfAKind, BetSize = numUnits, PaySizeInUnits = 25 * numUnits});
+                PaySchedule.Add(new PaySchedule{HandType = HandType.StraightFlush, BetSize = numUnits, PaySizeInUnits = 50 * numUnits});
+                PaySchedule.Add(new PaySchedule{HandType = HandType.RoyalFlush, BetSize = numUnits, PaySizeInUnits = royalPayout});
             }
 
             Deck = deck;

@@ -2,7 +2,7 @@
 
 namespace Poker.Games.VideoPoker
 {
-    public class PayShedule
+    public class PaySchedule
     {
         public HandType HandType { get; set; }
         public int BetSize { get; set; }

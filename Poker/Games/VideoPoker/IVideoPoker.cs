@@ -7,7 +7,7 @@ namespace Poker.Games.VideoPoker
     {
         Card[] Hand { get; }        
 
-        IList<PayShedule> PaySchedule { get; set; }
+        IList<PaySchedule> PaySchedule { get; set; }
 
         IDeck Deck { get; set; }
 
@@ -15,10 +15,12 @@ namespace Poker.Games.VideoPoker
 
         void NewGame();
         void SelectUnitSize(decimal unitSize);
-        void SelectBetSize(short betSize);
+        void SelectBetSize(int betSize);
         void DepositMoney(decimal depositAmount);
         HandEvaluationResult Deal();
 
-        VideoPokerResult Draw(int[] heldCardsIndeces);        
+        VideoPokerResult Draw(int[] heldCardsIndeces);
+
+        VideoPokerResult Draw(Card[] cards, int[] heldCardsIndeces);
     }
 }
