@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Poker\Poker.csproj" />
-    <ProjectReference Include="..\VideoPoker\VideoPoker.csproj" />
+    <ProjectReference Include="..\..\Poker\Poker.csproj" />
+    <ProjectReference Include="..\..\VideoPoker\VideoPoker.csproj" />
   </ItemGroup>
 
 

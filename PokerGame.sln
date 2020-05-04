@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackjackConsole", "Blackja
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoPokerWeb", "VideoPokerWeb\VideoPokerWeb.csproj", "{1C5F5967-3CDA-4376-9E00-C62425C249F4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "Web\Web.csproj", "{5E4D2959-426A-462B-9280-577E3F775B1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "Web\Server\Web.csproj", "{5E4D2959-426A-462B-9280-577E3F775B1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

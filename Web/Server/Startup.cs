@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 using System.Text.Json.Serialization;
 using Web.Services;
 
@@ -18,9 +19,28 @@ namespace Web
 
         public IConfiguration Configuration { get; }
 
+        readonly string _allowedSpecificOrigins = "_allowedSpecificOrigins";
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options => {
+                options.AddDefaultPolicy(
+                    builder => {
+                        builder.WithOrigins("http://localhost:4200")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
+
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => {
+                options.Cookie.Name = ".VideoPoker.Session";
+                options.IdleTimeout = TimeSpan.FromSeconds(300);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddControllers();
             services.AddMvcCore()                
                 .AddApiExplorer()
@@ -55,7 +75,7 @@ namespace Web
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors();
 
             app.UseAuthorization();
 
@@ -65,6 +85,8 @@ namespace Web
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

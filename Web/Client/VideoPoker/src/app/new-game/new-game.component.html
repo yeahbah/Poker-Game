@@ -1,0 +1,22 @@
+<div fxLayout fxFill fxLayoutAlign="space-around center">
+
+<form [formGroup]="gameParamForm" (ngSubmit)="onSubmit()">
+    <h2 class="mat-h2">Select the unit size:</h2>
+    <mat-radio-group class="radio-group" aria-label="Selet the unit size:" formControlName="unitSize">
+        <mat-radio-button value="0.05" class="radio-button">&#162;0.05 </mat-radio-button>
+        <mat-radio-button value="0.25" class="radio-button">&#162;0.25 </mat-radio-button>
+        <mat-radio-button value="1" class="radio-button">$1</mat-radio-button>
+    </mat-radio-group>
+    <div>
+        <h2 class="mat-2">How much do you want to play with?</h2>
+        <mat-form-field>
+            <mat-label>Make it rain boi!</mat-label>
+            <input matInput placeholder="Make it rain" id="depositAmount" formControlName="depositAmount">                
+        </mat-form-field>
+    </div>
+
+    <div style="margin-top: 10px">
+        <button type="submit" mat-button mat-stroked-button color="primary">Let's Play!</button>
+    </div>
+</form>
+</div>
