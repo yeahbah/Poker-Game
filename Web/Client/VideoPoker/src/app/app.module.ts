@@ -10,9 +10,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PayScheduleComponent } from './pay-schedule/pay-schedule.component';
+
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -29,10 +32,11 @@ import { PayScheduleComponent } from './pay-schedule/pay-schedule.component';
     MatInputModule,
     MatRadioModule,
     MatButtonModule,
+    MatTableModule,
     HttpClientModule,
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

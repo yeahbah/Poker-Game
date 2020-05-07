@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry} from 'rxjs/operators';
 import { VideoPokerType } from './new-game/video-poker-type';
 import { PaySchedule } from './pay-schedule/pay-schedule';
+import { GameVarsModel } from './game/game-vars-model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,12 +32,27 @@ export class VideoPokerService {
   }
 
   getPayschedule(videoPokerType: VideoPokerType, unitSize: number, betSize: number): Observable<PaySchedule[]> {
-    let params = new HttpParams().set("videoPokerType", videoPokerType.toString());
+    let params = new HttpParams()
+      .set("videoPokerType", videoPokerType.toString())
+      .set("unitSize", unitSize.toString())
+      .set("betSize", betSize.toString());
+      
     return this.http.get<PaySchedule[]>("https://localhost:5001/api/videopoker/payschedule", 
         {
           headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
           params: params
-    });
+        })
+        .pipe(
+          catchError(this.handleError)
+        );
+  }
+
+  getGameVars(): Observable<GameVarsModel> {
+    return this.http
+      .get<GameVarsModel>("https://localhost:5001/api/videopoker/gamevars")
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
 

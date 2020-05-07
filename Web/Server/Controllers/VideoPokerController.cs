@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Poker;
-using Poker.Games.VideoPoker;
 using Server.Models;
-using System.Collections.Generic;
 using Web.Models;
 using Web.Services;
 using Server.Extensions;
+using System.Linq;
+using Poker.HandEvaluator.PokerHands;
 
 namespace Web.Controllers
 {
@@ -43,7 +43,9 @@ namespace Web.Controllers
 
         [HttpGet]
         [Route("payschedule")]
-        public IEnumerable<PaySchedule> GetPayschedule(VideoPokerType videoPokerType, decimal unitSize, int betSize)
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IActionResult GetPayschedule(VideoPokerType videoPokerType, decimal unitSize, int betSize)
         {
             var gameVars = new GameVarsModel
             {
@@ -52,7 +54,27 @@ namespace Web.Controllers
                 Money = 1,
                 VideoPokerType = videoPokerType
             };
-            return videoPokerService.GetPaySchedule(gameVars);
+            var paySchedule = videoPokerService.GetPaySchedule(gameVars)
+                ?.Where(pay => pay.BetSize == gameVars.BetSize);
+
+            if (!paySchedule.Any()) 
+            {
+                return NotFound();
+            }
+            var result = new PayScheduleModel 
+            {
+                Pair = paySchedule.Single(p => p.HandType == HandType.Pair).PaySizeInUnits,
+                TwoPair = paySchedule.Single(p => p.HandType == HandType.TwoPair).PaySizeInUnits,
+                ThreeofAkind = paySchedule.Single(p => p.HandType == HandType.ThreeOfAKind).PaySizeInUnits,
+                Straight = paySchedule.Single(p => p.HandType == HandType.Straight).PaySizeInUnits,
+                Flush = paySchedule.Single(p => p.HandType == HandType.Flush).PaySizeInUnits,
+                Fullhouse = paySchedule.Single(p => p.HandType == HandType.Fullhouse).PaySizeInUnits,
+                FourOfAKind = paySchedule.Single(p => p.HandType == HandType.FourOfAKind).PaySizeInUnits,
+                StraightFlush = paySchedule.Single(p => p.HandType == HandType.StraightFlush).PaySizeInUnits,
+                RoyalFlush = paySchedule.Single(p => p.HandType == HandType.RoyalFlush).PaySizeInUnits
+            };
+                            
+            return Ok(result);
         }
 
         [HttpPost]
@@ -66,6 +88,21 @@ namespace Web.Controllers
                 VideoPokerType = newGame.VideoPokerType                    
             });
             return StatusCode(StatusCodes.Status200OK);
+        }
+
+        [HttpGet]
+        [Route("gamevars")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public IActionResult GetGameVars() 
+        {
+            var result = HttpContext.Session.Get<GameVarsModel>("game") as GameVarsModel;
+            if (result == null)
+            {
+                return NotFound(StatusCodes.Status204NoContent);
+            }
+
+            return Ok(result);
         }
     }
 }
