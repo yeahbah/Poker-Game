@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Poker;
+using Yeahbah.Poker;
 
 namespace BlackjackConsole
 {

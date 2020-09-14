@@ -1,4 +1,4 @@
-using Poker;
+using Yeahbah.Poker;
 
 namespace Blackjack
 {
