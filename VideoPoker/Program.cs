@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Poker;
-using Poker.Games.VideoPoker;
-using Poker.HandEvaluator.PokerHands;
+using Yeahbah.Poker;
+using PokerGames.VideoPoker;
+using Yeahbah.Poker.HandEvaluator.PokerHands;
 
 namespace VideoPoker
 {

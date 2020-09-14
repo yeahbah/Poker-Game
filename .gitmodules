@@ -1,3 +1,6 @@
 [submodule "Stateless"]
 	path = Stateless
 	url = https://github.com/yeahbah/stateless.git
+[submodule "PokerLib"]
+	path = PokerLib
+	url = git@github.com:yeahbah/PokerLib.git

@@ -1,6 +1,6 @@
-﻿using Poker.HandEvaluator.PokerHands;
+﻿using Yeahbah.Poker.HandEvaluator.PokerHands;
 
-namespace Poker.Games.VideoPoker
+namespace PokerGames.VideoPoker
 {
     public class PaySchedule
     {

@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
-using Poker.HandEvaluator;
+using Yeahbah.Poker.HandEvaluator;
+using Yeahbah.Poker;
 
-namespace Poker.Games.VideoPoker
+namespace PokerGames.VideoPoker
 {
     public interface IVideoPoker
     {

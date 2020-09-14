@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Poker.Games.VideoPoker
+namespace PokerGames.VideoPoker
 {
     [Serializable]
     internal class VideoPokerException : Exception

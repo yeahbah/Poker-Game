@@ -1,7 +1,8 @@
-﻿using Poker.HandEvaluator.PokerHands;
+﻿using Yeahbah.Poker;
+using Yeahbah.Poker.HandEvaluator.PokerHands;
 using System.Collections.Generic;
 
-namespace Poker.Games.VideoPoker
+namespace PokerGames.VideoPoker
 {
     public class JacksOrBetter : VideoPokerBase
     {

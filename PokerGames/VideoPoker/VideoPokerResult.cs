@@ -1,6 +1,6 @@
-﻿using Poker.HandEvaluator;
+﻿using Yeahbah.Poker.HandEvaluator;
 
-namespace Poker.Games.VideoPoker
+namespace PokerGames.VideoPoker
 {
     public struct VideoPokerResult
     {

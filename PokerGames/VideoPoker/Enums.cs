@@ -1,4 +1,4 @@
-﻿namespace Poker.Games.VideoPoker 
+﻿namespace PokerGames.VideoPoker 
 {
     public enum GameTrigger
     {

@@ -1,7 +1,7 @@
-﻿using Poker;
-using Poker.Games.VideoPoker;
-using Poker.HandEvaluator;
-using Poker.HandEvaluator.PokerHands;
+﻿using Yeahbah.Poker;
+using PokerGames.VideoPoker;
+using Yeahbah.Poker.HandEvaluator;
+using Yeahbah.Poker.HandEvaluator.PokerHands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
